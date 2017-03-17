@@ -26,6 +26,7 @@ App.propTypes = {
 };
 
 export default createContainer(() => {
+	Meteor.subscribe('games');
 	return {
 		currentUser: Meteor.user(),
 	};
