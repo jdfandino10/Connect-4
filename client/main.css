@@ -1,1 +1,44 @@
 /* CSS declarations go here */
+
+
+.chip-container {
+	background-color: black;
+	height: 40px;
+}
+
+.empty-chip {
+	background-color: white;
+    height: 30px;
+    border-radius: 100%;
+    width: 30px;
+    position: relative;
+    left: 7px;
+}
+
+.p1-chip {
+	background-color: red;
+    height: 30px;
+    border-radius: 100%;
+    width: 30px;
+    position: relative;
+    left: 7px;
+}
+
+.p2-chip {
+	background-color: yellow;
+    height: 30px;
+    border-radius: 100%;
+    width: 30px;
+    position: relative;
+    left: 7px;
+}
+
+
+button.p1-chip[disabled], button.p2-chip[disabled] {
+	background-color: grey;
+}
+
+th {
+	width: 50px;
+    height: 50px;
+}
