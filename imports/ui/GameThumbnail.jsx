@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 export default class GameThumbnail extends Component {
 
+	//Cambiar contenido (o crear otro) segun si es historico o juego disponible
+
 	joinGame () {
 		Meteor.call('games.join', this.props.game._id);
 	}

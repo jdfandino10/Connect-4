@@ -16,8 +16,8 @@ if (Meteor.isServer) {
 }
 /*
 game: {
-	p1: {_id, username}, //datos jugador 1
-	p2: {_id, username}, //datos jugador 2
+	p1: {_id, username, score}, //datos jugador 1
+	p2: {_id, username, score}, //datos jugador 2
 	cols: [[0,0,0,0,0]....,[1,2,0,0,0]], //matriz donde cols[columna][fila]
 	turn, //0 o 1 para indicar que es el turno del jugador 1 o 2 respectivamente
 	state, //estado: waiting, playing, ended
@@ -47,9 +47,10 @@ Meteor.methods({
 		Games.insert(game);
 
 	},
-	'games.start'(gameId) {
-		check(gameId, String);
 
+	'games.winner'(gameId) {
+		check(gameId, String);
+		//hace validacion y cambia el winner y el score(NO EL ESTADO)
 	},
 	'games.end'(gameId) {
 		check(gameId, String);

@@ -18,7 +18,7 @@ class App extends Component {
 				
 				<h1>Connect-4</h1>
 				<AccountsUIWrapper />
-				{this.props.currentUser ?<Board games={this.props.games} activeGame={this.props.activeGame}/> : <Login />}
+				{this.props.currentUser ?<Board games={this.props.games} historicGames={this.props.historicGames} activeGame={this.props.activeGame}/> : <Login />}
 			</div>
 		);
 	}
@@ -31,7 +31,6 @@ App.propTypes = {
 export default createContainer(() => {
 	Meteor.subscribe('games');
 	function activeGame () {
-		console.log('actualiza active game');
 		if(Meteor.user()) return Games.find({ $and: [
 							{
 								$or: [
@@ -48,7 +47,8 @@ export default createContainer(() => {
 						]}).fetch();
 		return null;
 	}
-	console.log(Games.find({ $and: [
+	function findHistoricGames(){
+		if(Meteor.user()) return Games.find({ $and: [
 							{
 								$or: [
 									{'p1._id':{$eq: Meteor.userId()}},
@@ -56,15 +56,16 @@ export default createContainer(() => {
 								]
 							}, 
 							{
-								$or: [
-									{state:{$eq: 'playing'}},
-									{state:{$eq: 'waiting'}}
-								]
+								state:{$eq: 'ended'},
 							}
-						]}).fetch());
+						]}).fetch();
+		return null;
+
+	}
 	return {
 		games: Games.find({}, { sort: { date_started: -1 } }).fetch(),
 		activeGame: activeGame(),
 		currentUser: Meteor.user(),
+		historicGames: findHistoricGames(),
 	};
 }, App);

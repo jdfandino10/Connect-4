@@ -3,6 +3,9 @@ import GameThumbnail from './GameThumbnail.jsx';
 
 export default class GameList extends Component {
 
+	//Crear estado para visualizar pestañas de historico y juegos disponibles.
+	//para historico puede reutilizar el GameThumbnail
+
 	render() {
 		return (
 			<div className="game-list">
