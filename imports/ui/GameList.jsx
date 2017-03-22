@@ -23,16 +23,18 @@ export default class GameList extends Component {
 				</div>
 				
 				<div className="row">
-				{
-					this.props.availableGames.length===0?'There are no available games... Tell your friends!':
-					this.props.availableGames.map((game)=>{
-						return (
-							<div key={game._id} className="col-xs-12">
-								<GameThumbnail game={game} />
-							</div>
-							);
-					})
-				}
+					<div className="col-xs-12">
+					{
+						this.props.availableGames.length===0?'There are no available games... Tell your friends!':
+						this.props.availableGames.map((game)=>{
+							return (
+								<div key={game._id} className="col-xs-12">
+									<GameThumbnail game={game} />
+								</div>
+								);
+						})
+					}
+					</div>
 				</div>
 			</div>
 		);

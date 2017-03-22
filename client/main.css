@@ -1,8 +1,38 @@
 /* CSS declarations go here */
+:root {
+  --red-main: #FF0700;
+  --red-shade1: #FF635F;
+  --red-shade2: #FF3832;
+  --red-shade3: #D00500;
+  --red-shade4: #A30400;
+  --yellow-main: #FFD200;
+  --yellow-shade1: #FFE35F;
+  --yellow-shade2: #FFDB32;
+  --yellow-shade3: #D0AC00;
+  --yellow-shade4: #A38700;
+  --green-main: #00D00E;
+  --green-shade1: #51DB5A;
+  --green-shade2: #2AD335;
+  --green-shade3: #00A40B;
+  --green-shade4: #008108;
+  --blue-main: #3914BA;
+  --blue-shade1: #735ACA;
+  --blue-shade2: #5638BF;
+  --blue-shade3: #2B0E90;
+  --blue-shade4: #200971;
+  
+}
 
+* {
+    font-family: Merriweather;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Oswald;
+}
 
 .chip-container {
-	background-color: black;
+	background-color: var(--blue-main);
 	height: 40px;
 }
 
@@ -16,29 +46,65 @@
 }
 
 .p1-chip {
-	background-color: red;
+	background-color: var(--red-main);
     height: 30px;
     border-radius: 100%;
     width: 30px;
     position: relative;
     left: 7px;
+    border-top: 2px solid var(--red-shade1);
+    border-left: 2px solid var(--red-shade1);
+    border-right: 2px solid var(--red-shade3);
+    border-bottom: 2px solid var(--red-shade3);
+    color: var(--red-shade4);
 }
 
 .p2-chip {
-	background-color: yellow;
+	background-color: var(--yellow-main);
     height: 30px;
     border-radius: 100%;
     width: 30px;
     position: relative;
     left: 7px;
+    border-top: 2px solid var(--yellow-shade1);
+    border-left: 2px solid var(--yellow-shade1);
+    border-right: 2px solid var(--yellow-shade3);
+    border-bottom: 2px solid var(--yellow-shade3);
+    color: var(--yellow-shade4);
 }
 
 
 button.p1-chip[disabled], button.p2-chip[disabled] {
 	background-color: grey;
+    border-top: 2px solid #CACACA;
+    border-left: 2px solid #CACACA;
+    border-right: 2px solid #636363;
+    border-bottom: 2px solid #636363;
+    color: #636363;
 }
 
 th {
 	width: 50px;
     height: 50px;
+}
+
+tbody {
+    border-top: 2px solid var(--blue-shade1);
+    border-left: 2px solid var(--blue-shade1);
+    border-right: 2px solid var(--blue-shade3);
+    border-bottom: 2px solid var(--blue-shade3);
+    box-shadow: 0px 6px 15px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    z-index: 100;
+    background-color: var(--blue-main);
+    color:white;
+}
+
+.skip-link:focus {
+    top:0;
 }

@@ -15,10 +15,14 @@ class App extends Component {
 	render() {
 		return (
 			<div className="container">
-				
-				<h1>Connect-4</h1>
-				<AccountsUIWrapper />
+				<a href="#maincontent" className="skip-link" >Skip to main content</a>
+				<nav>
+					<h1>Connect-4</h1>
+					<AccountsUIWrapper />
+				</nav>
+				<main id="maincontent">
 				{this.props.currentUser ?<Board games={this.props.games} historicGames={this.props.historicGames} activeGame={this.props.activeGame}/> : <Login />}
+				</main>
 			</div>
 		);
 	}
