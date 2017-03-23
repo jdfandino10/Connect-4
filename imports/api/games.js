@@ -27,6 +27,53 @@ game: {
 	p //boolean que indica si la sesion es privada (solo se puede unir con el id del juego) true si privada, false de lo contrario
 }
 */
+
+getPoints(matrix, i, j) {
+	let pts = 0;
+	pts += getPointsUp(matrix, i, j);
+	pts += getPointsUpDiag(matrix, i, j);
+	pts += getPointsRight(matrix, i, j);
+	pts += getPointsDownDiag(matrix, i, j);
+	return pts;
+}
+
+getPointsUp(matrix, i, j) {
+	var initial = matrix[i][j];
+	var good = initial!==0 && i+3<matrix.length;
+	for (var k=0; k<4 && good; k++) {
+		good = matrix[i+k][j]===initial;
+	}
+	return good ? 1 : 0;
+}
+
+getPointsUpDiag(matrix, i, j) {
+	var initial = matrix[i][j];
+	var good = initial!==0 && i+3<matrix.length && j+3<matrix[i].length;
+	for (var k=0; k<4 && good; k++) {
+		good = matrix[i+k][j+k]===initial;
+	}
+	return good ? 1 : 0;
+}
+
+getPointsRight(matrix, i, j) {
+	var initial = matrix[i][j];
+	var good = initial!==0 && j+3<matrix[i].length;
+	for (var k=0; k<4 && good; k++) {
+		good = matrix[i][j+k]===initial;
+	}
+	return good ? 1 : 0;
+}
+
+getPointsDownDiag(matrix, i, j) {
+	var initial = matrix[i][j];
+	var good = initial!==0 && i-3>=0 && j+3<matrix[i].length;
+	for (var k=0; k<4 && good; k++) {
+		good = matrix[i-k][j+k]===initial;
+	}
+	return good ? 1 : 0;
+}
+
+
 Meteor.methods({
 
 	'games.newGame'(p=false) {
@@ -51,6 +98,21 @@ Meteor.methods({
 	'games.winner'(gameId) {
 		check(gameId, String);
 		//hace validacion y cambia el winner y el score(NO EL ESTADO)
+
+		let game = Games.findOne(gameId);
+		let scoreP1 = 0, scoreP2 = 0;
+		let matrix = game.cols;
+		for (var i=0; i<matrix.length; i++) {
+			for (var j=0; j<matrix[i].length; j++) {
+				var pts = getPoints(matrix, i, j);
+				if (matrix[i][j]===1) scoreP1 += pts;
+				else if (matrix[i][j]===2) scoreP2 += pts;
+			}	
+		}
+		game.p1.score = scoreP1;
+		game.p2.score = scoreP2;
+		let winner = scoreP1>scoreP2 ? scoreP1 : (scoreP2>scoreP1 ? score P2 : 'tie');
+		Games.update(gameId, { $set: { p1: game.p1, p2: game.p2, winner } });
 	},
 	'games.end'(gameId) {
 		check(gameId, String);
@@ -73,13 +135,14 @@ Meteor.methods({
 		if ((game.turn===0 && this.userId!==game.p1._id) ||
 			(game.turn===1 && this.userId!==game.p2._id)) {
 			throw new Meteor.Error('not-authorized');
-		}
-		console.log(game);
-		let gameCol = game.cols[col];
-		let i=gameCol.length-1;
-		while(i>=0 && gameCol[i]!==0) i--;
-		game.cols[col][i]=game.turn+1;
-		Games.update(gameId, { $set: { cols:game.cols, turn: (game.turn+1)%2 } });
-	},
+	}
+	console.log(game);
+	let gameCol = game.cols[col];
+	let i=gameCol.length-1;
+	while(i>=0 && gameCol[i]!==0) i--;
+	if (game.cols[col][i]!==0) throw new Meteor.Error('not-authorized');
+	game.cols[col][i]=game.turn+1;
+	Games.update(gameId, { $set: { cols:game.cols, turn: (game.turn+1)%2 } });
+},
 
 });
