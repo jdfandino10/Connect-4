@@ -22,5 +22,3 @@ react-meteor-data
 accounts-ui
 accounts-password
 twbs:bootstrap
-insecure
-autopublish

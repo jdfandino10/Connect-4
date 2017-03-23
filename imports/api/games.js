@@ -6,8 +6,13 @@ export const Games = new Mongo.Collection('games');
 
 if (Meteor.isServer) {
 	Meteor.publish('games', function gamesPublication(){
-		return Games.find(
-			{ p: { $ne: true } }, //cambiar esto a que el juego tenga estado waiting y no sea privado
+		return Games.find( { $or: [
+				{ p: { $ne: true } }, //cambiar esto a que el juego tenga estado waiting y no sea privado
+				{  $or: [
+					{ 'p1._id': { $eq: this.userId } },
+					{ 'p2._id': { $eq: this.userId } },
+				] },
+			]}
 		);
 	});
 }
