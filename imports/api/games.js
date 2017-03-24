@@ -109,11 +109,11 @@ Meteor.methods({
 				var pts = getPoints(matrix, i, j);
 				if (matrix[i][j]===1) scoreP1 += pts;
 				else if (matrix[i][j]===2) scoreP2 += pts;
-			}	
+			}
 		}
 		game.p1.score = scoreP1;
 		game.p2.score = scoreP2;
-		let winner = scoreP1>scoreP2 ? scoreP1 : (scoreP2>scoreP1 ? scoreP2 : 'tie');
+		let winner = scoreP1>scoreP2 ? game.p1.username : (scoreP2>scoreP1 ? game.p2.username : 'tie');
 		Games.update(gameId, { $set: { p1: game.p1, p2: game.p2, winner } });
 	},
 	'games.end'(gameId) {
@@ -128,7 +128,7 @@ Meteor.methods({
 		if(!game) throw new Meteor.Error('There is no game with such id');
 		if(game.p2._id) throw new Meteor.Error('already playing');
 		let player = {_id:this.userId, username:Meteor.user().username};
-		Games.update(gameId, { $set: { p2: player, state:'playing' } }); 
+		Games.update(gameId, { $set: { p2: player, state:'playing' } });
 
 	},
 	'games.move'(gameId, col) {

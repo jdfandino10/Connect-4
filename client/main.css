@@ -20,7 +20,7 @@
   --blue-shade2: #5638BF;
   --blue-shade3: #2B0E90;
   --blue-shade4: #200971;
-  
+
 }
 
 * {
@@ -107,4 +107,31 @@ tbody {
 
 .skip-link:focus {
     top:0;
+}
+
+.message-container {
+  position: absolute;
+  border: 1px solid #058ceb;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0px 12px 54px grey;
+  margin-top: 47px;
+  top: 10px;
+}
+
+.visible {
+ opacity: 1;
+ visibility: visible;
+ -webkit-transition: visibility 2s, opacity 1s;
+ -o-transition: visibility 2s, opacity 1s;
+ transition: opacity 1s;
+}
+
+.hidden {
+ opacity: 0;
+ visibility: hidden;
+ -webkit-transition: opacity 1s;
+ -o-transition: opacity 1s;
+ transition: opacity 1s;
 }
