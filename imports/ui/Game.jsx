@@ -27,7 +27,7 @@ export default class Game extends Component {
 			(this.props.game.turn===1 && Meteor.userId()===this.props.game.p2._id);
 	}
 
-	
+
 
 	getGameState (){
 		let matrix = this.props.game.cols;
@@ -40,7 +40,6 @@ export default class Game extends Component {
 						<thead>
 							<tr>
 							{
-
 								matrix.map((col, index) => {
 									let canAdd = col[0]===0 && this.isMyTurn();
 									let player = Meteor.userId()===this.props.game.p1._id?'p1-chip':'p2-chip';
