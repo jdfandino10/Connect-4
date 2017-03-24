@@ -15,7 +15,7 @@ export default class GameList extends Component {
 		}
 	}
 
-	seeJoinGame () {
+	seeJoinGames () {
 		this.setState({historic: false});
 	}
 
@@ -36,7 +36,7 @@ export default class GameList extends Component {
 							<h4>Join a game using an id:</h4>
 							<div className="row">
 								<div className="col-xs-8">
-									<input type="text" placeholder="Enter the id of the game" 
+									<input type="text" placeholder="Enter the id of the game"
 									onChange={(e)=>{e.preventDefault(); this.setSearchId(e.target.value)}}/>
 								</div>
 								<div className="col-xs-4">
@@ -57,6 +57,12 @@ export default class GameList extends Component {
 					<div className="row game-option">
 						<div className="col-xs-12">
 							<h4>Browse games:</h4>
+							<div className="row">
+								<div className="col-xs-12">
+									<button className="options" onClick={(e)=>{e.preventDefault(); this.seeJoinGames()}}> Public games to join</button>
+									<button className="options" onClick={(e)=>{e.preventDefault(); this.seeHistoricGames()}}> Historic games</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

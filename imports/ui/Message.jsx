@@ -31,7 +31,8 @@ export default class Message extends Component {
             <h1>Winner!!!<span className="red"></span>: {this.props.game.winner}</h1>:
             <h1>It was a {this.props.game.winner}!!!<span className="red"></span></h1>
             }
-						{this.props.game.winner === Meteor.user().username ? <h3>You Won!</h3>: <h3>Maybe the next time ;)</h3>}
+            {this.props.game.winner === Meteor.user().username
+            ?<h3>You Won!</h3>: this.props.game.winner != 'tie'? <h3>Maybe the next time ;)</h3>:<h3>Good game!</h3>}
             <h3>Score for {this.props.game.p1.username}: {this.props.game.p1.score}</h3>
             <h3>Score for {this.props.game.p2.username}: {this.props.game.p2.score}</h3>
           </div>
