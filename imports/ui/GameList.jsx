@@ -10,7 +10,8 @@ export default class GameList extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			historic: false
+			historic: false,
+			searchId: ''
 		}
 	}
 
@@ -22,32 +23,32 @@ export default class GameList extends Component {
 		this.setState({historic: true});
 	}
 
+	setSearchId(newId) {
+		this.setState({searchId: newId});
+	}
 
 	render() {
 		return (
 			<div>
 				<div className="row">
 					<div className="row game-option">
-						<div className="col-xs-12">
+						<div className="col-xs-6">
 							<h4>Join a game using an id:</h4>
 							<div className="row">
-								<div className="col-xs-9">
-									<input type="text" placeholder="Enter the id of the game" />
+								<div className="col-xs-8">
+									<input type="text" placeholder="Enter the id of the game" 
+									onChange={(e)=>{e.preventDefault(); this.setSearchId(e.target.value)}}/>
 								</div>
-								<div className="col-xs-2">
-									<button className="options"> Join </button>
+								<div className="col-xs-4">
+									<button className="options" onClick={()=>{Meteor.call('games.join', this.state.searchId)}}> Join </button>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div className="row game-option">
-						<div className="col-xs-12">
+						<div className="col-xs-6 create-game">
 							<h4>Create a game:</h4>
-							<div className="row create-game">
-								<div className="col-xs-6">
+							<div className="row">
+								<div className="col-xs-12">
 									<button className="options" onClick={()=>{Meteor.call('games.newGame')}}> Public game</button>
-								</div>
-								<div className="col-xs-6">
 									<button className="options" onClick={()=>{Meteor.call('games.newGame', true)}}> Private game</button>
 								</div>
 							</div>

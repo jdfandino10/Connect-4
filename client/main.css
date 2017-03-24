@@ -210,7 +210,7 @@ p {
 }
 
 .create-game {
-    text-align: center;
+    border-left: 1px solid var(--blue-main);
 }
 
 .game-list {
@@ -260,4 +260,8 @@ p {
  -webkit-transition: opacity 1s;
  -o-transition: opacity 1s;
  transition: opacity 1s;
+}
+
+.thumb-img {
+    width: 100%;
 }
