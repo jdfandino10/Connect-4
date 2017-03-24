@@ -20,8 +20,7 @@ export default class Board extends Component {
 	render() {
 		console.log(this.props.activeGame);
 		return(
-			<div>
-			<h2>Aquí info de estadisticas y opciones para iniciar juego</h2>
+			<div className="row">
 			{this.props.activeGame.length>0 ? (<div className="possible-games">
 										<Game game={this.props.activeGame[0]} />
 									 </div>):

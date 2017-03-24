@@ -17,11 +17,26 @@ class App extends Component {
 			<div className="container">
 				<a href="#maincontent" className="skip-link" >Skip to main content</a>
 				<nav>
-					<h1>Connect-4</h1>
-					<AccountsUIWrapper />
+					<div className="row">
+						<div className="col-sm-1 hidden-xs"></div>
+						<div className="col-sm-8 col-xs-6">
+							<h1 className="logo">Connect-4</h1>
+						</div>
+						<div className="col-sm-3 col-xs-6">
+							<AccountsUIWrapper />
+						</div>
+					</div>
+					
+					
 				</nav>
 				<main id="maincontent">
-				{this.props.currentUser ?<Board games={this.props.games} historicGames={this.props.historicGames} activeGame={this.props.activeGame}/> : <Login />}
+					<div className="row">
+						<div className="col-xs-1 col-md-2"></div>
+						<div className="col-xs-10 col-md-8">
+						{this.props.currentUser ?<Board games={this.props.games} historicGames={this.props.historicGames} activeGame={this.props.activeGame}/> : <Login />}
+						</div>
+						<div className="col-xs-1 col-md-2"></div>
+					</div>
 				</main>
 			</div>
 		);

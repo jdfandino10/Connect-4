@@ -8,21 +8,42 @@ export default class GameList extends Component {
 
 	render() {
 		return (
-			<div className="game-list">
+			<div>
 				<div className="row">
-					<div className="col-xs-3 col-md-6"></div>
-					<div className="col-xs-3 col-md-2">
-						<button onClick={()=>{Meteor.call('games.newGame')}}> Create public game</button>
+					<div className="row game-option">
+						<div className="col-xs-12">
+							<h4>Join a game using an id:</h4>
+							<div className="row">
+								<div className="col-xs-9">
+									<input type="text" placeholder="Enter the id of the game" />
+								</div>
+								<div className="col-xs-2">
+									<button className="options"> Join </button>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div className="col-xs-3 col-md-2">
-						<button onClick={()=>{Meteor.call('games.newGame', true)}}> Create private game</button>
+					<div className="row game-option">
+						<div className="col-xs-12">
+							<h4>Create a game:</h4>
+							<div className="row create-game">
+								<div className="col-xs-6">
+									<button className="options" onClick={()=>{Meteor.call('games.newGame')}}> Public game</button>
+								</div>
+								<div className="col-xs-6">
+									<button className="options" onClick={()=>{Meteor.call('games.newGame', true)}}> Private game</button>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div className="col-xs-3 col-md-2">
-						<button> Join game with Id</button>
+					<div className="row game-option">
+						<div className="col-xs-12">
+							<h4>Browse games:</h4>
+						</div>
 					</div>
 				</div>
 				
-				<div className="row">
+				<div className={'row'+(this.props.availableGames.length!==0?' game-list':'')}>
 					<div className="col-xs-12">
 					{
 						this.props.availableGames.length===0?'There are no available games... Tell your friends!':

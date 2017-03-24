@@ -10,22 +10,16 @@ export default class GameThumbnail extends Component {
 
 	render(){
 		return (
-			<div className="col-xs-12">
+			<div className="col-xs-12 game-item">
 				<div className="row">
-					<div className="col-xs-4">
+					<div className="col-xs-3">
 						<img src="" alt="board_thumbnail" />
 					</div>
-					<div className="col-xs-12">
-						<div className="row">
-							<div className="col-xs-12">
-								<h3>Join {this.props.game.p1.username} game!</h3>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col-xs-12">
-								<button onClick={this.joinGame.bind(this)}>Join</button>
-							</div>
-						</div>
+					<div className="col-xs-6">
+						<h3>Join {this.props.game.p1.username} game!</h3>
+					</div>
+					<div className="col-xs-3">
+						<button className="options" onClick={this.joinGame.bind(this)}>Join</button>
 					</div>
 				</div>
 			</div>

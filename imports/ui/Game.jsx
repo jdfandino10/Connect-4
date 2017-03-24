@@ -33,33 +33,34 @@ export default class Game extends Component {
 		let matrix = this.props.game.cols;
 		let col1 = matrix[0];
 		return (
-			<div>
-				<table>
-					<thead>
-					<tr>
-						{
+			<div className="row">
+				<div className="col-xs-2"></div>
+				<div className="col-xs-8">
+					<table>
+						<thead>
+							<tr>
+							{
 
-							matrix.map((col, index) => {
-							console.log(col[0]);
-							console.log(this.isMyTurn());
-							let canAdd = col[0]===0 && this.isMyTurn();
-							console.log(canAdd);
-							let player = Meteor.userId()===this.props.game.p1._id?'p1-chip':'p2-chip';
-							console.log(player);
-							return (
-								<th key={index}>
-									<button className={player} onClick={ ()=>{ this.move(index) } } disabled={ !canAdd } > + </button>
-								</th>		
-							);
+								matrix.map((col, index) => {
+									let canAdd = col[0]===0 && this.isMyTurn();
+									let player = Meteor.userId()===this.props.game.p1._id?'p1-chip':'p2-chip';
+									return (
+										<th key={index}>
+											<button className={player} onClick={ ()=>{ this.move(index) } } disabled={ !canAdd } > + </button>
+										</th>		
+									);
+								})
+							}
+							</tr>
+						</thead>
+						<tbody>
+						{col1.map((colItem, index) => {
+							return this.createRow(matrix, index);
 						})}
-					</tr>
-					</thead>
-					<tbody>
-					{col1.map((colItem, index) => {
-						return this.createRow(matrix, index);
-					})}
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
+				<div className="col-xs-2"></div>
 			</div>
 			);
 	}
