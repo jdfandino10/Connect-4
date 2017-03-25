@@ -12,7 +12,7 @@ export default class GameThumbnail extends Component {
 		return (
 			<div className="col-xs-12 game-item">
 				<div className="row">
-					<div className="col-xs-8">
+					<div className="col-sm-8 col-xs-12">
 						<div className="row">
 						<h3>Join {this.props.game.p1.username} game!</h3>
 						</div>
@@ -21,8 +21,8 @@ export default class GameThumbnail extends Component {
 							<p>Dificulty: medium (50% win rate)</p>
 						</div>
 					</div>
-					<div className="col-xs-4">
-						<button className="options" onClick={this.joinGame.bind(this)}>Join</button>
+					<div className="col-sm-4 col-xs-12">
+						<button className="options pull-right" onClick={this.joinGame.bind(this)}>Join</button>
 					</div>
 				</div>
 			</div>

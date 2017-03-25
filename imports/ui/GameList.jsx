@@ -32,11 +32,11 @@ export default class GameList extends Component {
 			<div>
 				<div className="row">
 					<div className="row game-option">
-						<div className="col-xs-6">
+						<div className="col-sm-6 col-xs-12">
 							<h4>Join a game using an id:</h4>
 							<div className="row">
 								<div className="col-xs-8">
-									<input type="text" placeholder="Enter the id of the game"
+									<input type="text" placeholder="Enter the game ID"
 									onChange={(e)=>{e.preventDefault(); this.setSearchId(e.target.value)}}/>
 								</div>
 								<div className="col-xs-4">
@@ -44,7 +44,7 @@ export default class GameList extends Component {
 								</div>
 							</div>
 						</div>
-						<div className="col-xs-6 create-game">
+						<div className="col-sm-6 col-xs-12 create-game">
 							<h4>Create a game:</h4>
 							<div className="row">
 								<div className="col-xs-12">

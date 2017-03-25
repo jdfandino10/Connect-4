@@ -13,6 +13,6 @@ export default class AccountUIWrapper extends Component {
 		Blaze.remove(this.view);
 	}
 	render(){
-		return <span ref="container" />;
+		return <span ref="container" className="pull-right" />;
 	}
 }

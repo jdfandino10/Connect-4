@@ -34,8 +34,8 @@ export default class Game extends Component {
 		let col1 = matrix[0];
 		return (
 			<div className="row">
-				<div className="col-xs-2"></div>
-				<div className="col-xs-8">
+				<div className="col-sm-2 hidden-xs"></div>
+				<div className="col-sm-8 col-xs-12">
 					<table>
 						<thead>
 							<tr>
@@ -59,7 +59,7 @@ export default class Game extends Component {
 						</tbody>
 					</table>
 				</div>
-				<div className="col-xs-2"></div>
+				<div className="col-sm-2 hidden-xs"></div>
 			</div>
 			);
 	}
@@ -75,13 +75,31 @@ export default class Game extends Component {
 					<div className="col-xs-5"></div>
 				</div>
 				<div className="row">
-					<div className="col-xs-3"></div>
-					<div className="col-xs-6 loading-message">
+					<div className="col-sm-3 hidden-xs"></div>
+					<div className="col-sm-6 col-xs-12 loading-message">
 						<h4>Waiting for player 2...</h4>
 						<p>Share the game id with your friends!</p>
 						<p><strong>Game ID: </strong>{this.props.game._id}</p>
+						<button className="options" onClick={()=>{Meteor.call('games.end', this.props.game._id)}}> Exit </button>
 					</div>
-					<div className="col-xs-3"></div>
+					<div className="col-xs-3 hidden-xs"></div>
+				</div>
+			</div>
+		);
+	}
+
+	getGameFooter() {
+		return (
+			<div className="game-footer">
+				<div className="row">
+					<div className="col-xs-6 p1-footer">
+						<h2>Player 1</h2>
+						<h3>{ this.props.game.p1.username }</h3>
+					</div>
+					<div className="col-xs-6 p2-footer">
+						<h2>Player 2</h2>
+						<h3>{ this.props.game.p2.username }</h3>
+					</div>
 				</div>
 			</div>
 		);
@@ -104,7 +122,8 @@ export default class Game extends Component {
 	render() {
 		return (
 			<div>
-			{this.props.game.p2._id?this.getGameState():this.waiting()}
+			{ this.props.game.p2._id?this.getGameState():this.waiting() }
+			{ this.props.game.p2._id?this.getGameFooter():'' }
 			</div>
 		);
 	}

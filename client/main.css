@@ -24,18 +24,22 @@
 }
 
 * {
-    font-family: Merriweather;
+  font-family: Merriweather;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: Oswald;
-    font-weight: bolder;
-    color: var(--blue-main);
-    margin-top: 0;
+  font-family: Oswald;
+  font-weight: bolder;
+  color: var(--blue-main);
+  margin-top: 0;
 }
 
 .logo {
-    color: white;
+  color: white;
+}
+
+tbody {
+  background-color: var(--blue-shade3);
 }
 
 .chip-container {
@@ -45,205 +49,214 @@ h1, h2, h3, h4, h5, h6 {
 
 .empty-chip {
 	background-color: white;
-    height: 30px;
-    border-radius: 100%;
-    width: 30px;
-    position: relative;
-    left: 7px;
+  height: 30px;
+  border-radius: 100%;
+  width: 30px;
+  position: relative;
+  left: 7px;
 }
 
 .p1-chip {
 	background-color: var(--red-main);
-    height: 30px;
-    border-radius: 100%;
-    width: 30px;
-    position: relative;
-    left: 7px;
-    border-top: 2px solid var(--red-shade1);
-    border-left: 2px solid var(--red-shade1);
-    border-right: 2px solid var(--red-shade3);
-    border-bottom: 2px solid var(--red-shade3);
-    color: var(--red-shade4);
+  height: 30px;
+  border-radius: 100%;
+  width: 30px;
+  position: relative;
+  left: 7px;
+  border-top: 2px solid var(--red-shade1);
+  border-left: 2px solid var(--red-shade1);
+  border-right: 2px solid var(--red-shade3);
+  border-bottom: 2px solid var(--red-shade3);
+  color: var(--red-shade4);
 }
 
 .p2-chip {
 	background-color: var(--yellow-main);
-    height: 30px;
-    border-radius: 100%;
-    width: 30px;
-    position: relative;
-    left: 7px;
-    border-top: 2px solid var(--yellow-shade1);
-    border-left: 2px solid var(--yellow-shade1);
-    border-right: 2px solid var(--yellow-shade3);
-    border-bottom: 2px solid var(--yellow-shade3);
-    color: var(--yellow-shade4);
+  height: 30px;
+  border-radius: 100%;
+  width: 30px;
+  position: relative;
+  left: 7px;
+  border-top: 2px solid var(--yellow-shade1);
+  border-left: 2px solid var(--yellow-shade1);
+  border-right: 2px solid var(--yellow-shade3);
+  border-bottom: 2px solid var(--yellow-shade3);
+  color: var(--yellow-shade4);
 }
 
 
 button.p1-chip[disabled], button.p2-chip[disabled] {
 	background-color: grey;
-    border-top: 2px solid #CACACA;
-    border-left: 2px solid #CACACA;
-    border-right: 2px solid #636363;
-    border-bottom: 2px solid #636363;
-    color: #636363;
+  border-top: 2px solid #CACACA;
+  border-left: 2px solid #CACACA;
+  border-right: 2px solid #636363;
+  border-bottom: 2px solid #636363;
+  color: #636363;
 }
 
 th {
 	width: 50px;
-    height: 50px;
+  height: 50px;
 }
 
 tbody {
-    border-top: 2px solid var(--blue-shade1);
-    border-left: 2px solid var(--blue-shade1);
-    border-right: 2px solid var(--blue-shade3);
-    border-bottom: 2px solid var(--blue-shade3);
-    box-shadow: 0px 6px 15px;
+  border-top: 2px solid var(--blue-shade1);
+  border-left: 2px solid var(--blue-shade1);
+  border-right: 2px solid var(--blue-shade3);
+  border-bottom: 2px solid var(--blue-shade3);
+  box-shadow: 0px 6px 15px;
 }
 
 .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    z-index: 100;
-    background-color: var(--blue-main);
-    color:white;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  z-index: 100;
+  background-color: var(--blue-main);
+  color:white;
 }
 
 .skip-link:focus {
-    top:0;
+  top:0;
 }
 
 #login-buttons {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 #login-buttons * {
-    font-family: Merriweather;
+  font-family: Merriweather;
 }
 
 #login-dropdown-list {
-    position: absolute;
-    top: 30vh;
-    left: -35vw;
-    background-color: var(--yellow-main);
-    border-radius: 0;
-    border: 1px solid var(--yellow-shade1);
-    box-shadow: 0px 0px 15px var(--blue-shade4);
+  position: absolute;
+  top: 32vh;
+  left: -46vw;
+  background-color: var(--yellow-main);
+  border-radius: 0;
+  border: 1px solid var(--yellow-shade1);
+  box-shadow: 0px 0px 15px var(--blue-shade4);
 }
 
 #login-dropdown-list a {
-    font-family: Oswald;
+  font-family: Oswald;
 }
 
 #login-dropdown-list input {
-    border: 1px solid white !important;
+  border: 1px solid white !important;
 }
 
 input {
-    border-radius: 5px;
-    border: 2px solid var(--blue-shade1);
-    padding: 5px;
-    width: 100%;
+  border-radius: 5px;
+  border: 2px solid var(--blue-shade1);
+  padding: 5px;
+  width: 100%;
 }
 
 input:focus {
-    border: 2px solid var(--blue-main);
+  border: 2px solid var(--blue-main);
 }
 
 #login-sign-in-link, #login-name-link, button.options {
-    text-decoration: none !important;
-    font-family: Oswald;
-    color: white;
-    border: 2px solid white;
-    padding: 5px 35px;
-    border-radius: 5px;
-    background-color: var(--blue-main);
+  text-decoration: none !important;
+  font-family: Oswald;
+  color: white;
+  border: 2px solid white;
+  padding: 5px 35px;
+  border-radius: 5px;
+  background-color: var(--blue-main);
 }
 
-.login-button:hover, #login-sign-in-link:hover, #login-name-link:hover, button.options:hover {
-    background-color: var(--blue-shade2) !important;
+.login-button:hover, #login-sign-in-link:hover, #login-name-link:hover, button.options:hover, .login-button:focus, #login-sign-in-link:focus, #login-name-link:focus, button.options:focus {
+  background-color: var(--blue-shade2) !important;
+  color:white;
 }
 
 a.login-close-text {
-    float: right !important;
-    font-family: Oswald;
+  float: right !important;
+  font-family: Oswald;
 }
 
 .container {
-    margin-top: 120px;
+  margin-top: 120px;
 }
 
 nav {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 20px;
-    background-color: var(--blue-main);
-    color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: var(--blue-main);
+  color: white;
 }
 
 .login-button {
-    background-color: var(--blue-main) !important;
-    font-family: Oswald !important;
-    border: none !important;
+  background-color: var(--blue-main) !important;
+  font-family: Oswald !important;
+  border: none !important;
 }
 
-p {
-    text-align: justify;
-    text-justify: inter-word;
+.intro-page p {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .play-now {
-    background-color: var(--yellow-main);
-    color: var(--blue-main);
-    padding: 20px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+  background-color: var(--yellow-main);
+  color: var(--blue-main);
+  padding: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .play-now img {
-    width: 100%;
+  width: 100%;
 }
 
 .create-game {
-    border-left: 1px solid var(--blue-main);
+  border-left: 1px solid var(--blue-main);
+}
+
+@media (max-width: 768px) {
+  .create-game {
+    margin-top: 20px;
+    border: none;
+  }
 }
 
 .game-list {
-    background-color: var(--yellow-main);
-    padding: 15px;
-    min-height: 47.5vh;
+  background-color: var(--yellow-main);
+  padding: 15px;
+  min-height: 47.5vh;
+  color: var(--blue-main);
 }
 
 .game-item {
-    background-color: var(--blue-main);
-    border-radius: 5px;
-    color: white;
-    padding: 16px 8px;
-    margin-bottom: 15px;
+  background-color: var(--blue-main);
+  border-radius: 5px;
+  color: white;
+  padding: 16px 33px;
+  margin-bottom: 15px;
 }
 
 .game-item h1, .game-item h2, .game-item h3, .game-item h4, .game-item h5, .game-item h6 {
-    color: white;
+  color: white;
 }
 
 .game-option {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .message-container {
   position: absolute;
-  border: 1px solid #058ceb;
   border-radius: 10px;
   padding: 15px;
-  background-color: white;
-  box-shadow: 0px 12px 54px grey;
   margin-top: 47px;
   top: 10px;
+  background-color: var(--yellow-main);
+  border-radius: 0px;
+  box-shadow: 0px 0px 15px var(--blue-main);
 }
 
 .visible {
@@ -263,7 +276,7 @@ p {
 }
 
 .thumb-img {
-    width: 100%;
+  width: 100%;
 }
 
 .waiting {
@@ -301,3 +314,44 @@ p {
 .loading-message h4 {
   margin-bottom: 20px;
 }
+
+table {
+  margin: 0 auto;
+}
+
+.scores {
+  text-align: end;
+}
+
+.winner-msg {
+  color: var(--green-shade3);
+}
+
+.loser-msg {
+  color: var(--red-shade3);
+}
+
+.game-over {
+  margin-bottom: 20px;
+}
+
+.p1-footer {
+  background-color: var(--red-main);
+  text-align: right;
+  padding: 40px;
+}
+
+.p1-footer h2, .p1-footer h3 {
+  color: white;
+} 
+
+.p2-footer {
+  background-color: var(--yellow-main);
+  padding: 40px;
+}
+
+.game-footer {
+  padding: 30px;
+  margin-top: 30px;
+}
+
