@@ -8,7 +8,7 @@ export default class Board extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			modal: 'hidden'
+			modal: false,
 		}
 	}
 
@@ -20,7 +20,7 @@ export default class Board extends Component {
 
 	//renderizar nuevo componente que muestra el ganador.
 	//para eso debe revisar que newProps: 1. este en playing 2.Todo cols[i][0]!==0
-	//en ese caso llama el metodo Meteor.call('games.winner') (tambien falta ese metodo)
+	//en ese caso llama el metodo Meteor.call('games.winner')
 	//si winner esta definido, mostrar componente de dialogo que muestre el ganador y puntos de cada jugador
 	//tambien mensaje personalizado segun si gano o perdio el usuario actual
 	componentWillReceiveProps(newProps) {
@@ -41,11 +41,19 @@ export default class Board extends Component {
 							}
 							else{
 								console.log('mensaje');
-								this.setState({modal:'show'});
+								this.setState({modal:true});
 							}
 						}
 				}
 		}
+	}
+
+	endGame() {
+		console.log("va a end game");
+		if(this.props.activeGame[0]){
+			Meteor.call('games.end', this.props.activeGame[0]._id);
+		}
+		this.setState({modal: false});
 	}
 
 	render() {
@@ -58,9 +66,9 @@ export default class Board extends Component {
 									 	<GameList availableGames={this.availableGames()} historicGames={this.props.historicGames}/>
 			}
 
-				{this.props.activeGame.length>0?
-				<Message show={this.state.modal} toggleModal={(mod)=>{this.setState({modal:mod})}} game={this.props.activeGame[0]} finishGame={() => {Meteor.call('games.end', this.props.activeGame[0]._id)}}/>
-				: <div></div>}
+				{this.state.modal?
+				<Message game={this.props.activeGame[0]} finishGame={() => {this.endGame()}}/>
+				: ''}
 			</div>
 
 			);

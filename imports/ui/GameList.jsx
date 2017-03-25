@@ -66,7 +66,7 @@ export default class GameList extends Component {
 						</div>
 					</div>
 				</div>
-				<div className={'row'+(this.props.availableGames.length!==0?' game-list':'')}>
+				<div className="row game-list">
 					<div className="col-xs-12">
 					{
 						!this.state.historic?	this.props.availableGames.length===0? 'There are no available games... Tell your friends!':

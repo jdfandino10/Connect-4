@@ -2,14 +2,18 @@ import React, {Component} from 'react';
 
 export default class Message extends Component {
 
-  hide() {
-    this.props.finishGame();
-    this.props.toggleModal('hidden');
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      winner: this.props.game.winner,
+      p1: {username: this.props.game.p1.username, score: this.props.game.p1.score},
+      p2: {username: this.props.game.p2.username, score: this.props.game.p2.score},
+    };
+  }
 
   close(e) {
     e.preventDefault();
-    this.hide();
+    this.props.finishGame();
   };
 
   render() {
@@ -17,7 +21,7 @@ export default class Message extends Component {
 
       <div className="row fixed-container">
       <div className="col-xs-1"></div>
-      <div className={"message-container col-xs-10 "+this.props.show}>
+      <div className={"message-container col-xs-10"}>
 
       <div className="col-xs-12">
         <div className="row">
@@ -27,19 +31,19 @@ export default class Message extends Component {
         </div>
         <div className="row">
           <div className="col-xs-6 col-sm-6 ">
-            {this.props.game.winner != 'tie'?
-            <h2>Winner!!!<span className="red"></span>: {this.props.game.winner}</h2>
-            :<h2>It was a {this.props.game.winner}!!!<span className="red"></span></h2>}
+            { this.state.winner !== 'tie'?
+            <h2>Winner!!!<span className="red"></span>: {this.state.winner}</h2>
+            :<h2>It was a {this.state.winner}!!!<span className="red"></span></h2>}
 
-            {this.props.game.winner === Meteor.user().username
-            ?<h3>You Won!</h3>: this.props.game.winner != 'tie'? <h3>Maybe the next time ;)</h3>:<h3>Good game!</h3>}
+            {this.state.winner === Meteor.user().username
+            ?<h3>You Won!</h3>: this.state.winner !== 'tie'? <h3>Maybe the next time ;)</h3>:<h3>Good game!</h3>}
           </div>
           <div className="col-xs-6 create-game">
             <h4>Scores:</h4>
             <div className="row">
               <div className="col-xs-12">
-                <h4>Score for {this.props.game.p1.username}: {this.props.game.p1.score}</h4>
-                <h4>Score for {this.props.game.p2.username}: {this.props.game.p2.score}</h4>
+                <h4>Score for {this.state.p1.username}: {this.state.p1.score}</h4>
+                <h4>Score for {this.state.p2.username}: {this.state.p2.score}</h4>
               </div>
             </div>
           </div>

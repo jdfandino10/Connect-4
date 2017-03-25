@@ -26,7 +26,8 @@ game: {
 	date_started, //fecha inicio
 	date_ended, //fecha finalizacion
 	winner, //undefined o string del username ganador. Si un jugador se retira el que queda queda ganador
-	p //boolean que indica si la sesion es privada (solo se puede unir con el id del juego) true si privada, false de lo contrario
+	p, //boolean que indica si la sesion es privada (solo se puede unir con el id del juego) true si privada, false de lo contrario
+	giveUp, //boolean que indica si el ganador es por rendicion del contrincante
 }
 */
 
@@ -115,6 +116,13 @@ Meteor.methods({
 		game.p2.score = scoreP2;
 		let winner = scoreP1>scoreP2 ? game.p1.username : (scoreP2>scoreP1 ? game.p2.username : 'tie');
 		Games.update(gameId, { $set: { p1: game.p1, p2: game.p2, winner } });
+	},
+	'games.giveUp'(gameId) {
+		check(gameId, String);
+
+		let giveUp = true;
+		let winner = Meteor.user().username===game.p1.username?game.p2.username : game.p1.username;
+		Games.update(gameId, { $set: { state: 'ended', giveUp } });
 	},
 	'games.end'(gameId) {
 		check(gameId, String);

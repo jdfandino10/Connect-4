@@ -64,9 +64,48 @@ export default class Game extends Component {
 			);
 	}
 
+	waiting() {
+		return (
+			<div className="waiting">
+				<div className="row">
+					<div className="col-xs-5"></div>
+					<div className="col-xs-2">
+						<div className="loading-waiting"></div>
+					</div>
+					<div className="col-xs-5"></div>
+				</div>
+				<div className="row">
+					<div className="col-xs-3"></div>
+					<div className="col-xs-6 loading-message">
+						<h4>Waiting for player 2...</h4>
+						<p>Share the game id with your friends!</p>
+						<p><strong>Game ID: </strong>{this.props.game._id}</p>
+					</div>
+					<div className="col-xs-3"></div>
+				</div>
+			</div>
+		);
+	}
+
+	handleWindowClose() {
+		console.log('va a cerrar ventana');
+		window.alert('cerrar');
+		Meteor.call('games.giveUp', this.props.game._id);
+	}
+
+	componentDidMount() {
+    	window.addEventListener('onbeforeunload', this.handleWindowClose);
+	}
+
+	componentWillUnmount() {
+    	window.removeEventListener('onbeforeunload', this.handleWindowClose);
+	}
+
 	render() {
 		return (
-				this.getGameState()
-			);
+			<div>
+			{this.props.game.p2._id?this.getGameState():this.waiting()}
+			</div>
+		);
 	}
 }
