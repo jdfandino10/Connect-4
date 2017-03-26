@@ -148,7 +148,6 @@ Meteor.methods({
 			(game.turn===1 && this.userId!==game.p2._id)) {
 			throw new Meteor.Error('not-authorized');
 		}
-		console.log(game);
 		let gameCol = game.cols[col];
 		let i=gameCol.length-1;
 		while(i>=0 && gameCol[i]!==0) i--;

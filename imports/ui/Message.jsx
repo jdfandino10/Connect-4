@@ -30,8 +30,8 @@ export default class Message extends Component {
     return (
 
       <div className="row fixed-container">
-        <div className="message-container col-xs-12">
-          <div className="col-xs-12">
+        <div className="message-float col-xs-12">
+          <div className="message-container">
             <div className="row">
               <div className="col-xs-12">
                 <h2 className="text-center game-over">Game Over</h2>
@@ -58,7 +58,7 @@ export default class Message extends Component {
                </div>
              </div>
              <div className="row">
-               <div className="col-xs-12">
+               <div className="col-xs-12 text-center">
                  <button className="btn options" onClick={this.close.bind(this)}>Ok</button>
                </div>
             </div>

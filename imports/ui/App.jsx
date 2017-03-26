@@ -10,26 +10,36 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 class App extends Component {
 
-
+	componentDidMount() {
+		$('html').attr('lang','eng');
+	}
 
 	render() {
 		return (
 			<div className="container">
-				<a href="#maincontent" className="skip-link" >Skip to main content</a>
 				<nav>
 					<div className="row">
-						<div className="col-sm-1 hidden-xs"></div>
-						<div className="col-sm-8 col-xs-6">
-							<h1 className="logo">Connect-4</h1>
+						
+						<div className="col-sm-9 col-xs-6">
+							<div className="row">
+								<div className="col-xs-3 col-sm-2">
+									<div className="pull-right">
+										<img className="logo-img" src="imgs/favicon.png" alt="" />
+									</div>
+								</div>
+								<div className="col-xs-9 col-sm-10">
+									<h1 id="logo-name" className="logo" >Connect-4</h1>
+								</div>			
+							</div>
 						</div>
-						<div className="col-sm-3 col-xs-6">
+						<div className="col-sm-3 col-xs-6" id="accounts-wrapper">
 							<AccountsUIWrapper />
 						</div>
 					</div>
 					
 					
 				</nav>
-				<main id="maincontent">
+				<main>
 					<div className="row">
 						<div className="col-xs-1 col-md-2"></div>
 						<div className="col-xs-10 col-md-8">

@@ -27,6 +27,16 @@ export default class GameList extends Component {
 		this.setState({searchId: newId});
 	}
 
+	howManyIWon() {
+		let hg = this.props.historicGames;
+		return hg.filter(game => game.winner===Meteor.user().username).length;
+	}
+
+	howManyTies() {
+		let hg = this.props.historicGames;
+		return hg.filter(game => game.winner==='tie').length;
+	}
+
 	render() {
 		return (
 			<div>
@@ -69,6 +79,25 @@ export default class GameList extends Component {
 				<div className="row game-list">
 					<div className="col-xs-12">
 					{
+						this.state.historic?
+						(	
+							<div className="row">
+								<div className="col-xs-3 text-center">
+									<p><strong>Total: </strong>{this.props.historicGames.length}</p>
+								</div>
+								<div className="col-xs-3 text-center">
+									<p><strong>Won: </strong>{this.howManyIWon()}</p>
+								</div>
+								<div className="col-xs-3 text-center">
+									<p><strong>Lost: </strong>{this.props.historicGames.length - this.howManyIWon() - this.howManyTies()}</p>
+								</div>
+								<div className="col-xs-3 text-center">
+									<p><strong>Tie: </strong>{this.howManyTies()}</p>
+								</div>
+							</div>
+						):''
+					}
+					{
 						!this.state.historic?	this.props.availableGames.length===0? 'There are no available games... Tell your friends!':
 						this.props.availableGames.map((game)=>{
 							return (
@@ -76,10 +105,11 @@ export default class GameList extends Component {
 									<GameThumbnail game={game} />
 								</div>
 								);
-						}): this.props.historicGames.length===0?'You have not play a game until now... Join a game or create one!':
+						}): this.props.historicGames.length===0?'You haven\'t played any game yet... Join a game or create one!':
 						this.props.historicGames.map((historicGame)=>{
 							return (
 								<div key={historicGame._id} className="col-xs-12">
+									
 									<GameThumbnailHistoric game={historicGame} />
 								</div>
 								);

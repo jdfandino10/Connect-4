@@ -29,7 +29,7 @@ export default class Login extends Component {
 				<div className="row">
 					<div className="col-xs-12">
 						<div className="row">
-							<div className="col-xs-6">
+							<div className="col-sm-6 col-xs-12">
 								<div className="row">
 									<div className="col-xs-12">
 										<h2>What’s connect-4?</h2>
@@ -43,7 +43,7 @@ export default class Login extends Component {
 									</div>
 								</div>
 							</div>
-							<div className="col-xs-6">
+							<div className="col-sm-6 col-xs-12">
 								<div className="row">
 									<div className="col-xs-12">
 										<h2>Why play here?</h2>

@@ -249,14 +249,17 @@ nav {
 }
 
 .message-container {
-  position: absolute;
-  border-radius: 10px;
+  background-color: var(--yellow-main);
+  box-shadow: 0px 0px 15px var(--blue-main);
+  padding: 20px;
+  width: 40rem;
+  margin: 0 auto;
+}
+
+.message-float {
   padding: 15px;
   margin-top: 47px;
-  top: 10px;
-  background-color: var(--yellow-main);
-  border-radius: 0px;
-  box-shadow: 0px 0px 15px var(--blue-main);
+  width:100%;
 }
 
 .visible {
@@ -319,7 +322,7 @@ table {
   margin: 0 auto;
 }
 
-.scores {
+.results {
   text-align: end;
 }
 
@@ -351,7 +354,26 @@ table {
 }
 
 .game-footer {
-  padding: 30px;
+  padding-top: 30px;
   margin-top: 30px;
 }
 
+.logo-img {
+  height: 50px;
+}
+
+.fixed-container {
+  position: fixed;
+  width: 100%;
+  left:0;
+  margin-left: 5px;
+  top:18vh;
+}
+
+.game-item .winner-msg {
+  color: var(--green-shade1);
+}
+
+.game-item .loser-msg {
+  color: var(--red-shade1);
+}
