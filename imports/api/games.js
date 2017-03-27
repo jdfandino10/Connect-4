@@ -127,14 +127,15 @@ Meteor.methods({
 	'games.end'(gameId) {
 		check(gameId, String);
 
-		Games.update(gameId, { $set: { state: 'ended' } });
+		Games.update(gameId, { $set: { state: 'ended', date_ended: new Date() } });
 	},
 	'games.join'(gameId) {
 		check(gameId, String);
 
 		let game = Games.findOne(gameId);
-		if(!game) throw new Meteor.Error('There is no game with such id');
-		if(game.p2._id) throw new Meteor.Error('already playing');
+		if(!game) throw new Meteor.Error('Can\'t join game', 'There is no game with such id');
+		if(game.state==='playing') throw new Meteor.Error('Can\'t join game', 'The game is already playing');
+		if(game.state==='ended') throw new Meteor.Error('Can\'t join game', 'Game is over');
 		let player = {_id:this.userId, username:Meteor.user().username};
 		Games.update(gameId, { $set: { p2: player, state:'playing' } });
 

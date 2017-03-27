@@ -64,6 +64,17 @@ export default class Game extends Component {
 			);
 	}
 
+	copyToClipboard(){
+		this.refs.game_id.select();
+		try {
+    		var successful = document.execCommand('copy');
+    		var msg = successful ? 'successful' : 'unsuccessful';
+    		console.log('Copying text command was ' + msg);
+  		} catch (err) {
+    		console.log('Oops, unable to copy');
+		}
+	}
+
 	waiting() {
 		return (
 			<div className="waiting">
@@ -75,14 +86,17 @@ export default class Game extends Component {
 					<div className="col-xs-5"></div>
 				</div>
 				<div className="row">
-					<div className="col-sm-3 hidden-xs"></div>
-					<div className="col-sm-6 col-xs-12 loading-message">
+					<div className="col-sm-2 hidden-xs"></div>
+					<div className="col-sm-8 col-xs-12 loading-message">
 						<h4>Waiting for player 2...</h4>
 						<p>Share the game id with your friends!</p>
-						<p><strong>Game ID: </strong>{this.props.game._id}</p>
+						<p><strong>Game ID: </strong><textarea ref="game_id" className="game-id text-center" rows="1" value={this.props.game._id} readOnly />
+						<button className="options clip" title="Copy to clipboard" onClick={this.copyToClipboard.bind(this)} aria-label="Copy to clipboard">
+							<span className="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+						</button></p>
 						<button className="options" onClick={()=>{Meteor.call('games.end', this.props.game._id)}}> Exit </button>
 					</div>
-					<div className="col-xs-3 hidden-xs"></div>
+					<div className="col-xs-2 hidden-xs"></div>
 				</div>
 			</div>
 		);

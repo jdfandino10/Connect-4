@@ -67,7 +67,7 @@ tbody {
   border-left: 2px solid var(--red-shade1);
   border-right: 2px solid var(--red-shade3);
   border-bottom: 2px solid var(--red-shade3);
-  color: var(--red-shade4);
+  color: white;
 }
 
 .p2-chip {
@@ -81,7 +81,7 @@ tbody {
   border-left: 2px solid var(--yellow-shade1);
   border-right: 2px solid var(--yellow-shade3);
   border-bottom: 2px solid var(--yellow-shade3);
-  color: var(--yellow-shade4);
+  color: var(--blue-main-shade4);
 }
 
 
@@ -218,10 +218,33 @@ nav {
   border-left: 1px solid var(--blue-main);
 }
 
+.logo-img-container {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.custom-right {
+    float: right !important;
+}
+
 @media (max-width: 768px) {
   .create-game {
     margin-top: 20px;
     border: none;
+  }
+  
+  .logo-img-container {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .logo {
+    margin-right: 0;
+    padding-right: 0;
+  }
+  
+  .custom-right {
+    float: left !important;
   }
 }
 
@@ -377,3 +400,27 @@ table {
 .game-item .loser-msg {
   color: var(--red-shade1);
 }
+
+.game-id {
+  resize:none;
+  vertical-align: middle;
+  background-color: var(--yellow-shade1);
+  border-radius: 5px;
+  border-color: var(--blue-shade1);
+}
+
+.glyphicon-paperclip {
+  position: relative;
+  top:-2px;
+}
+
+button.options.clip {
+    padding: 5px;
+    margin: 0 10px;
+    border: none;
+    height: 24px;
+    vertical-align: middle;
+    text-align: center;
+    box-shadow: 0px 2px 7px var(--blue-shade1);
+}
+

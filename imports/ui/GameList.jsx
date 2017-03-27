@@ -37,20 +37,31 @@ export default class GameList extends Component {
 		return hg.filter(game => game.winner==='tie').length;
 	}
 
+	joinGame(e) {
+		e.preventDefault();
+		Meteor.call('games.join', this.state.searchId, function(err){
+			console.log("Error: " + err.error);
+			console.log(err.reason);
+			console.log(err);
+		});
+	}
+
 	render() {
 		return (
 			<div>
 				<div className="row">
 					<div className="row game-option">
 						<div className="col-sm-6 col-xs-12">
-							<h4>Join a game using an id:</h4>
+							<label htmlFor="join"><h4>Join a game using an id:</h4></label>
 							<div className="row">
 								<div className="col-xs-8">
-									<input type="text" placeholder="Enter the game ID"
+								<form id="join-form">
+									<input id="join" type="text" placeholder="Enter the game ID"
 									onChange={(e)=>{e.preventDefault(); this.setSearchId(e.target.value)}}/>
+								</form>
 								</div>
 								<div className="col-xs-4">
-									<button className="options" onClick={()=>{Meteor.call('games.join', this.state.searchId)}}> Join </button>
+									<button form="join-form" value="Submit" className="options" onClick={this.joinGame.bind(this)}> Join </button>
 								</div>
 							</div>
 						</div>

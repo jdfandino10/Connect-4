@@ -20,10 +20,10 @@ class App extends Component {
 				<nav>
 					<div className="row">
 						
-						<div className="col-sm-9 col-xs-6">
+						<div className="col-sm-9 col-xs-7 logo">
 							<div className="row">
-								<div className="col-xs-3 col-sm-2">
-									<div className="pull-right">
+								<div className="col-xs-3 col-sm-2 logo-img-container">
+									<div className="custom-right">
 										<img className="logo-img" src="imgs/favicon.png" alt="" />
 									</div>
 								</div>
@@ -32,7 +32,7 @@ class App extends Component {
 								</div>			
 							</div>
 						</div>
-						<div className="col-sm-3 col-xs-6" id="accounts-wrapper">
+						<div className="col-sm-3 col-xs-5" id="accounts-wrapper">
 							<AccountsUIWrapper />
 						</div>
 					</div>

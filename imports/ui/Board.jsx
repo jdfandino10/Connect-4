@@ -64,7 +64,7 @@ export default class Board extends Component {
 			{this.props.activeGame.length>0 ? (<div className="possible-games">
 										<Game game={this.props.activeGame[0]} />
 									 </div>):
-									 	<GameList availableGames={this.availableGames()} historicGames={this.props.historicGames}/>
+									 	<GameList availableGames={this.availableGames()} historicGames={this.historicGames()}/>
 			}
 
 				{this.state.modal?
