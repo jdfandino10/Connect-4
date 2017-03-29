@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GameList from './GameList.jsx';
 import Game from './Game.jsx';
 import Message from './Message.jsx';
+import GenericMessage from './GenericMessage.jsx';
 
 export default class Board extends Component {
 
@@ -45,6 +46,12 @@ export default class Board extends Component {
 				}
 			}
 		}
+		if(this.props.activeGame[0]){
+			let newH = newProps.historicGames.filter(game=>game && game._id===this.props.activeGame[0]._id)
+			if(newH.length>0 && newH[0].giveUp) {
+				this.partnerGaveUp(newH[0].winner===Meteor.user().username);
+			}
+		}
 	}
 
 	endGame() {
@@ -58,10 +65,30 @@ export default class Board extends Component {
 		//this.setState({modal: false});
 	}
 
+	showGiveUp() {
+		this.setState({giveUp: true, title: 'Give up?', message: 'Are you sure you want to give up?'});
+	}
+
+	hideGiveUp(endGame) {
+		this.setState({giveUp: false});
+		if(endGame && this.props.activeGame[0]) {
+			Meteor.call('games.giveUp', this.props.activeGame[0]._id);
+		}
+	}
+
+	partnerGaveUp(won) {
+		let str = won?'Partner gave up... You win!':'You gave up... You lose';
+		this.setState({giveUp: true, title: 'Game over', message: str});
+	}
+
 	render() {
 		return(
 			<div className="row">
+				
 			{this.props.activeGame.length>0 ? (<div className="possible-games">
+										<div className="row">
+											<button className="options" onClick={this.showGiveUp.bind(this)}> Give Up </button>
+										</div>
 										<Game game={this.props.activeGame[0]} />
 									 </div>):
 									 	<GameList availableGames={this.availableGames()} historicGames={this.historicGames()}/>
@@ -70,6 +97,7 @@ export default class Board extends Component {
 				{this.state.modal?
 				<Message game={this.props.activeGame[0]} finishGame={() => {this.endGame()}}/>
 				: ''}
+				{this.state.giveUp? <GenericMessage title={this.state.title} message={this.state.message} remove={()=>{this.hideGiveUp(true)}} cancel={()=>{this.hideGiveUp(false)}} showCancel={this.props.activeGame[0]}/>:''}
 			</div>
 
 			);

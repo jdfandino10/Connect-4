@@ -120,9 +120,10 @@ Meteor.methods({
 	'games.giveUp'(gameId) {
 		check(gameId, String);
 
+		let game = Games.findOne(gameId);
 		let giveUp = true;
 		let winner = Meteor.user().username===game.p1.username?game.p2.username : game.p1.username;
-		Games.update(gameId, { $set: { state: 'ended', giveUp } });
+		Games.update(gameId, { $set: { state: 'ended', giveUp, winner } });
 	},
 	'games.end'(gameId) {
 		check(gameId, String);

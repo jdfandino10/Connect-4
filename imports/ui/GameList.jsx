@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GameThumbnail from './GameThumbnail.jsx';
 import GameThumbnailHistoric from './GameThumbnailHistoric.jsx';
+import GenericMessage from './GenericMessage.jsx';
 
 export default class GameList extends Component {
 
@@ -11,7 +12,8 @@ export default class GameList extends Component {
 		super(props);
 		this.state = {
 			historic: false,
-			searchId: ''
+			searchId: '',
+			error: undefined,
 		}
 	}
 
@@ -39,11 +41,14 @@ export default class GameList extends Component {
 
 	joinGame(e) {
 		e.preventDefault();
+		var parent = this;
 		Meteor.call('games.join', this.state.searchId, function(err){
-			console.log("Error: " + err.error);
-			console.log(err.reason);
-			console.log(err);
+			parent.setState({ error: { error: err.error, reason: err.reason } });
 		});
+	}
+
+	removeError() {
+		this.setState({ error: undefined });
 	}
 
 	render() {
@@ -52,7 +57,8 @@ export default class GameList extends Component {
 				<div className="row">
 					<div className="row game-option">
 						<div className="col-sm-6 col-xs-12">
-							<label htmlFor="join"><h4>Join a game using an id:</h4></label>
+							<label htmlFor="join"><h4>Join a game using
+							 an id:</h4></label>
 							<div className="row">
 								<div className="col-xs-8">
 								<form id="join-form">
@@ -125,6 +131,9 @@ export default class GameList extends Component {
 								</div>
 								);
 						})
+					}
+					{
+						this.state.error ? <GenericMessage title={this.state.error.error} message={this.state.error.reason} remove={this.removeError.bind(this)} />:''
 					}
 					</div>
 				</div>

@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import GenericMessage from './GenericMessage.jsx';
 
 export default class Game extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			showGiveUp: false,
+		}
+	}
 
 	move(colIndex) {
 		Meteor.call('games.move', this.props.game._id, colIndex);
@@ -13,8 +21,11 @@ export default class Game extends Component {
 			{matrix.map((col, index)=>{
 				let chip = col[rowIndex];
 				let cn = chip===0?'empty-chip':(chip===1?'p1-chip':'p2-chip');
+				let aria = (chip===0?'empty chip':(chip===1?'player 1 chip':'player 2 chip')) + ' at column '+(index+1)+' row '+(6-rowIndex);
 				return (<td key={(totCol*rowIndex)+index} className="chip-container">
-							<div className={cn}></div>
+							<div role="log" className={cn} aria-live="polite">
+								{chip!==0 ? <span aria-label={aria}></span>:''}
+							</div>
 					    </td>);
 			})}
 			</tr>
@@ -45,7 +56,9 @@ export default class Game extends Component {
 									let player = Meteor.userId()===this.props.game.p1._id?'p1-chip':'p2-chip';
 									return (
 										<th key={index}>
-											<button className={player} onClick={ ()=>{ this.move(index) } } disabled={ !canAdd } > + </button>
+											<button aria-label={'Add chip to column '+(index+1)} className={player} onClick={ ()=>{ this.move(index) } } disabled={ !canAdd } >
+												<span className="glyphicon glyphicon-plus" aria-hidden="true" />
+											</button>
 										</th>		
 									);
 								})
@@ -90,10 +103,12 @@ export default class Game extends Component {
 					<div className="col-sm-8 col-xs-12 loading-message">
 						<h4>Waiting for player 2...</h4>
 						<p>Share the game id with your friends!</p>
-						<p><strong>Game ID: </strong><textarea ref="game_id" className="game-id text-center" rows="1" value={this.props.game._id} readOnly />
+						<div className="row">
+						<strong>Game ID: </strong><textarea ref="game_id" className="game-id text-center" rows="1" value={this.props.game._id} readOnly />
 						<button className="options clip" title="Copy to clipboard" onClick={this.copyToClipboard.bind(this)} aria-label="Copy to clipboard">
 							<span className="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-						</button></p>
+						</button>
+						</div>
 						<button className="options" onClick={()=>{Meteor.call('games.end', this.props.game._id)}}> Exit </button>
 					</div>
 					<div className="col-xs-2 hidden-xs"></div>
@@ -119,18 +134,8 @@ export default class Game extends Component {
 		);
 	}
 
-	handleWindowClose() {
-		console.log('va a cerrar ventana');
-		window.alert('cerrar');
-		Meteor.call('games.giveUp', this.props.game._id);
-	}
-
-	componentDidMount() {
-    	window.addEventListener('onbeforeunload', this.handleWindowClose);
-	}
-
 	componentWillUnmount() {
-    	window.removeEventListener('onbeforeunload', this.handleWindowClose);
+    	//window.removeEventListener('onbeforeunload', this.handleWindowClose);
 	}
 
 	render() {
