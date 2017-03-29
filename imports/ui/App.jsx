@@ -10,14 +10,29 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 class App extends Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			'modal':false,
+		};
+	}
+
 	componentDidMount() {
 		$('html').attr('lang','eng');
+	}
+
+	hideNavBar() {
+		this.setState({modal:true});
+	}
+
+	showNavBar() {
+		this.setState({modal:false});
 	}
 
 	render() {
 		return (
 			<div className="container">
-				<nav>
+				<nav aria-hidden={this.state.modal?'true':'false'}>
 					<div className="row">
 						
 						<div className="col-sm-9 col-xs-7 logo">
@@ -43,7 +58,8 @@ class App extends Component {
 					<div className="row">
 						<div className="col-xs-1 col-md-2"></div>
 						<div className="col-xs-10 col-md-8">
-						{this.props.currentUser ?<Board games={this.props.games} historicGames={this.props.historicGames} activeGame={this.props.activeGame}/> : <Login />}
+						{this.props.currentUser ?<Board games={this.props.games} historicGames={this.props.historicGames} activeGame={this.props.activeGame}
+						hideNavBar={this.hideNavBar.bind(this)} showNavBar={this.showNavBar.bind(this)} /> : <Login />}
 						</div>
 						<div className="col-xs-1 col-md-2"></div>
 					</div>

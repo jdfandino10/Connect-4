@@ -81,23 +81,42 @@ export default class Board extends Component {
 		this.setState({giveUp: true, title: 'Game over', message: str});
 	}
 
+	blockFocus() {
+		this.props.hideNavBar();
+		this.refs.board.tabIndex=-1;
+	}
+
+	resetFocus() {
+		this.props.showNavBar();
+		this.refs.board.tabIndex=0;
+		this.refs.board.focus();
+	}
+
+
 	render() {
 		return(
-			<div className="row">
+			<div ref="board" className="row" tabIndex="0">
 				
-			{this.props.activeGame.length>0 ? (<div className="possible-games">
+			{this.props.activeGame.length>0 ? (<div className="possible-games" aria-hidden={this.state.modal || this.state.giveUp?'true':'false'}>
+										{this.props.activeGame[0].state!=='waiting'?
 										<div className="row">
 											<button className="options" onClick={this.showGiveUp.bind(this)}> Give Up </button>
-										</div>
+										</div>:''}
 										<Game game={this.props.activeGame[0]} />
 									 </div>):
-									 	<GameList availableGames={this.availableGames()} historicGames={this.historicGames()}/>
+										<div aria-hidden={this.state.modal || this.state.giveUp?'true':'false'}>
+									 		<GameList availableGames={this.availableGames()} historicGames={this.historicGames()}
+									 		modalIsOn={this.state.modal}/>
+									 	</div>
 			}
 
 				{this.state.modal?
-				<Message game={this.props.activeGame[0]} finishGame={() => {this.endGame()}}/>
+				<Message game={this.props.activeGame[0]} finishGame={() => {this.endGame()}} 
+				blockFocus={this.blockFocus.bind(this)} resetFocus={this.resetFocus.bind(this)} />
 				: ''}
-				{this.state.giveUp? <GenericMessage title={this.state.title} message={this.state.message} remove={()=>{this.hideGiveUp(true)}} cancel={()=>{this.hideGiveUp(false)}} showCancel={this.props.activeGame[0]}/>:''}
+				{this.state.giveUp? <GenericMessage title={this.state.title} message={this.state.message} remove={()=>{this.hideGiveUp(true)}}
+									cancel={()=>{this.hideGiveUp(false)}} showCancel={this.props.activeGame[0]}
+									blockFocus={this.blockFocus.bind(this)} resetFocus={this.resetFocus.bind(this)} />:''}
 			</div>
 
 			);
