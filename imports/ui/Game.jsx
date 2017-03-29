@@ -7,7 +7,54 @@ export default class Game extends Component {
 		super(props);
 		this.state = {
 			showGiveUp: false,
+			p1score: 0,
+			p2score: 0,
 		}
+	}
+
+	getPoints(matrix, i, j) {
+		let pts = 0;
+		pts += this.getPointsUp(matrix, i, j);
+		pts += this.getPointsUpDiag(matrix, i, j);
+		pts += this.getPointsRight(matrix, i, j);
+		pts += this.getPointsDownDiag(matrix, i, j);
+		return pts;
+	}
+
+	getPointsUp(matrix, i, j) {
+		var initial = matrix[i][j];
+		var good = initial!==0 && i+3<matrix.length;
+		for (var k=0; k<4 && good; k++) {
+			good = matrix[i+k][j]===initial;
+		}
+		return good ? 1 : 0;
+	}
+
+	getPointsUpDiag(matrix, i, j) {
+		var initial = matrix[i][j];
+		var good = initial!==0 && i+3<matrix.length && j+3<matrix[i].length;
+		for (var k=0; k<4 && good; k++) {
+			good = matrix[i+k][j+k]===initial;
+		}
+		return good ? 1 : 0;
+	}
+
+	getPointsRight(matrix, i, j) {
+		var initial = matrix[i][j];
+		var good = initial!==0 && j+3<matrix[i].length;
+		for (var k=0; k<4 && good; k++) {
+			good = matrix[i][j+k]===initial;
+		}
+		return good ? 1 : 0;
+	}
+
+	getPointsDownDiag(matrix, i, j) {
+		var initial = matrix[i][j];
+		var good = initial!==0 && i-3>=0 && j+3<matrix[i].length;
+		for (var k=0; k<4 && good; k++) {
+			good = matrix[i-k][j+k]===initial;
+		}
+		return good ? 1 : 0;
 	}
 
 	move(colIndex) {
@@ -124,10 +171,12 @@ export default class Game extends Component {
 					<div className="col-xs-6 p1-footer">
 						<h2>Player 1</h2>
 						<h3>{ this.props.game.p1.username }</h3>
+						<h3>{ this.state.p1score }</h3>
 					</div>
 					<div className="col-xs-6 p2-footer">
 						<h2>Player 2</h2>
 						<h3>{ this.props.game.p2.username }</h3>
+						<h3>{ this.state.p2score }</h3>
 					</div>
 				</div>
 			</div>
@@ -136,6 +185,19 @@ export default class Game extends Component {
 
 	componentWillUnmount() {
     	//window.removeEventListener('onbeforeunload', this.handleWindowClose);
+	}
+
+	componentWillReceiveProps(newProps) {
+		let p1score = 0, p2score = 0;
+		let matrix = newProps.game.cols;
+		for (var i=0; i<matrix.length; i++) {
+			for (var j=0; j<matrix[i].length; j++) {
+				var pts = this.getPoints(matrix, i, j);
+				if (matrix[i][j]===1) p1score += pts;
+				else if (matrix[i][j]===2) p2score += pts;
+			}
+		}
+		this.setState({p1score, p2score});
 	}
 
 	render() {
