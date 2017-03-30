@@ -1,5 +1,27 @@
 /* global $ */
 
+function trapTabKey(e, firstTabStop, lastTabStop, closeModal) {
+	console.log("key pressed: ");
+	console.log(firstTabStop);
+	console.log(lastTabStop);
+	if (e.keyCode === 9) {
+		if (e.shiftKey) {
+			if(document.activeElement === firstTabStop[0]) {
+				e.preventDefault();
+				lastTabStop.focus();
+			}
+		} else {
+			if(document.activeElement === lastTabStop[0]) {
+				e.preventDefault();
+				firstTabStop.focus();
+			}
+		}
+	}
+	if(e.keyCode === 27) {
+		closeModal();
+	}
+}
+
 function addButtonBehaviour(component) {
   if (component) {
     component.keypress((e) => {
@@ -11,7 +33,7 @@ function addButtonBehaviour(component) {
   }
 }
 
-function removeFocus() {
+function removeFocus(modal) {
   const intr = $('.intro-page');
   const hideable = $('.hideOnSignModal');
   if (intr.length === 0) intr.attr('aria-hidden', 'true');
@@ -53,12 +75,20 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
     signModalToggle.click(() => { removeFocus(); });
   }
   if (modal.length !== 0) {
-    modal.attr('tabindex', '0');
+  	let lastTabStop = change;
+  	if (signOut.length !== 0){
+  		lastTabStop = signOut;
+  	} else if (chPassBtn.length !== 0) {
+  		lastTabStop = chPassBtn;
+  	}
+    modal.attr('tabindex', '1');
     modal.attr('aria-label', 'sign up or login');
     if ($('#overlay').length === 0) {
       $('<div id=\'overlay\'class=\'modal-overlay\'></div>').insertAfter(modal);
       $('#overlay').click(() => { close.click(); });
     }
+    modal.keydown((e) => { console.log("key presed: "); trapTabKey(e, close, lastTabStop, close.click); });
+    console.log("key trap set");
   }
   if (close.length !== 0) {
     close.click(() => {

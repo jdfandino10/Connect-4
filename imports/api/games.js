@@ -4,8 +4,9 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-const Games = new Mongo.Collection('games');
-export default Games;
+/* eslint disable*/
+export const Games = new Mongo.Collection('games');
+/* eslint enable*/
 
 if (Meteor.isServer) {
   Meteor.publish('games', function gamesPublication() {
