@@ -2,7 +2,8 @@
   "name": "connect-4",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "lint": "eslint .",
+    "pretest": "npm run lint --silent"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
@@ -22,14 +23,13 @@
     "eslint-plugin-meteor": "^4.0.1",
     "eslint-plugin-react": "^6.10.3"
   },
-  "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint --silent"
-  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "parserOptions": {
-      "allowImportExportEverywhere": true
+      "allowImportExportEverywhere": true,
+      "ecmaFeatures": {
+        "jsx": true
+      }
     },
     "plugins": [
       "meteor"
@@ -42,8 +42,14 @@
       "import/resolver": "meteor"
     },
     "rules": {
-      "import/extensions":["off", "never"],
-      "linebreak-style": ["error", "windows"]
+      "import/extensions": [
+        "off",
+        "never"
+      ],
+      "linebreak-style": [
+        "error",
+        "windows"
+      ]
     }
   }
 }
