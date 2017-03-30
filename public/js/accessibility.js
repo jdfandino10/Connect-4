@@ -71,7 +71,9 @@ function removeFocus() {
 	let intr = $(".intro-page");
 	if (intr.length===0) intr.attr('aria-hidden', 'true');
 	let hideable = $(".hideOnSignModal");
-	hideable.attr('aria-hidden', 'true');
+	hideable.attr('aria-hidden', 'true'); 
+
+	//Agregar el focus trap
 }
 
 function restoreFocus() {
@@ -79,4 +81,6 @@ function restoreFocus() {
 	if (intr.length===0) intr.attr('aria-hidden', 'false');
 	let hideable = $(".hideOnSignModal");
 	hideable.attr('aria-hidden', 'false');
+
+	//quitar el focus trap
 }
