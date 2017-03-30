@@ -41,6 +41,8 @@
     "settings": {
       "import/resolver": "meteor"
     },
-    "rules": {}
+    "rules": {
+      "import/extensions":["off", "never"]
+    }
   }
 }
