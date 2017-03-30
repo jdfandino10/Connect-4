@@ -97,14 +97,14 @@ export default class Board extends Component {
 		return(
 			<div ref="board" className="row" tabIndex="0">
 				
-			{this.props.activeGame.length>0 ? (<div className="possible-games" aria-hidden={this.state.modal || this.state.giveUp?'true':'false'}>
+			{this.props.activeGame.length>0 ? (<div className="possible-games hideOnSignModal" aria-hidden={this.state.modal || this.state.giveUp?'true':'false'}>
 										{this.props.activeGame[0].state!=='waiting'?
 										<div className="row">
 											<button className="options" onClick={this.showGiveUp.bind(this)}> Give Up </button>
 										</div>:''}
 										<Game game={this.props.activeGame[0]} />
 									 </div>):
-										<div aria-hidden={this.state.modal || this.state.giveUp?'true':'false'}>
+										<div className="hideOnSignModal" aria-hidden={this.state.modal || this.state.giveUp?'true':'false'}>
 									 		<GameList availableGames={this.availableGames()} historicGames={this.historicGames()}
 									 		modalIsOn={this.state.modal}/>
 									 	</div>

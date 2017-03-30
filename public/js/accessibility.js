@@ -2,12 +2,34 @@ $("#accounts-wrapper").bind("DOMNodeInserted",function(){
     //console.log("child is appended");
     var userIn = $("#login-username");
     var signModalToggle = $("#login-sign-in-link");
+    if(signModalToggle.length===0) signModalToggle=$("#login-name-link");
     var close = $("a.login-close-text");
     var modal = $("#login-dropdown-list");
     var signInButton = $("div.login-button-form-submit");
     var change = $("a.additional-link");
-    if(userIn) {
+    var changePass = $("#login-buttons-open-change-password");
+    var signOut = $("#login-buttons-logout");
+    var chPassBtn = $("#login-buttons-do-change-password");
+    var oldPass = $("#login-old-password");
+
+    if(userIn.length!==0) {
     	userIn.focus();
+    }
+    if(changePass.length!==0) {
+    	changePass.focus();
+    }
+    if(oldPass.length!==0) {
+    	oldPass.focus();
+    }
+    if(signModalToggle.length!==0) {
+    	let oldClick = signModalToggle.click;
+    	signModalToggle.click(
+    		//deshabilitar foco de todo
+    		function () {
+    			removeFocus();	
+    		}
+    		
+    	);
     }
     if (modal.length !==0) {
     	modal.attr('tabindex', '0');
@@ -21,22 +43,17 @@ $("#accounts-wrapper").bind("DOMNodeInserted",function(){
     	let oldClick = close.click;
     	close.click( function () {
     		$("#overlay").remove();
-    		//oldClick();
-    		//deshabilitar foco de todo
-    		//oldClick();
+    		restoreFocus();
     	});
     }
     addButtonBehaviour(signModalToggle);
     addButtonBehaviour(close);
     addButtonBehaviour(signInButton);
     addButtonBehaviour(change);
-    /*if(signModalToggle) {
-    	let oldClick = signModalToggle.click;
-    	signModalToggle.click(
-    		//deshabilitar foco de todo
-    		//oldClick();
-    	);
-    }*/
+    addButtonBehaviour(changePass);
+    addButtonBehaviour(signOut);
+    addButtonBehaviour(chPassBtn);
+    
 });
 
 function addButtonBehaviour(component) {
@@ -48,4 +65,18 @@ function addButtonBehaviour(component) {
     	});
     	component.attr('tabindex', '0');
 	}
+}
+
+function removeFocus() {
+	let intr = $(".intro-page");
+	if (intr.length===0) intr.attr('aria-hidden', 'true');
+	let hideable = $(".hideOnSignModal");
+	hideable.attr('aria-hidden', 'true');
+}
+
+function restoreFocus() {
+	let intr = $(".intro-page");
+	if (intr.length===0) intr.attr('aria-hidden', 'false');
+	let hideable = $(".hideOnSignModal");
+	hideable.attr('aria-hidden', 'false');
 }

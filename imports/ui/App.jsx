@@ -32,7 +32,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="container">
-				<nav aria-hidden={this.state.modal?'true':'false'}>
+				<nav className="hideOnSignModal" aria-hidden={this.state.modal?'true':'false'}>
 					<div className="row">
 						
 						<div className="col-sm-9 col-xs-7 logo">
