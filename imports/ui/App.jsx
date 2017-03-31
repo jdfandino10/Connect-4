@@ -57,7 +57,7 @@ class App extends Component {
 				<main>
 					<div className="row">
 						<div className="col-xs-1 col-md-2"></div>
-						<div className="col-xs-10 col-md-8">
+						<div className="col-xs-10 col-md-8 hideOnSignModal">
 						{this.props.currentUser ?<Board games={this.props.games} historicGames={this.props.historicGames} activeGame={this.props.activeGame}
 						hideNavBar={this.hideNavBar.bind(this)} showNavBar={this.showNavBar.bind(this)} /> : <Login />}
 						</div>
