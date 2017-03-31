@@ -26,7 +26,7 @@ export default class GameList extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.modalIsOn) this.refs.gamelist.focus();
+    if (!this.props.modalIsOn) this.gamelist.focus();
   }
 
   setSearchId(newId) {
@@ -66,27 +66,29 @@ export default class GameList extends Component {
   }
 
   blockFocus() {
-    this.refs['join-input'].tabIndex = -1;
-    this.refs['join-button'].tabIndex = -1;
-    this.refs['create-public'].tabIndex = -1;
-    this.refs['create-private'].tabIndex = -1;
-    this.refs['list-public'].tabIndex = -1;
-    this.refs['list-private'].tabIndex = -1;
+    // this.refs['join-input'].tabIndex = -1;
+    // this.refs['join-button'].tabIndex = -1;
+    // this.refs['create-public'].tabIndex = -1;
+    // this.refs['create-private'].tabIndex = -1;
+    // this.refs['list-public'].tabIndex = -1;
+    // this.refs['list-private'].tabIndex = -1;
+    this.props.blockFocus();
   }
 
   resetFocus() {
-    this.refs['join-input'].tabIndex = 0;
-    this.refs['join-button'].tabIndex = 0;
-    this.refs['create-public'].tabIndex = 0;
-    this.refs['create-private'].tabIndex = 0;
-    this.refs['list-public'].tabIndex = 0;
-    this.refs['list-private'].tabIndex = 0;
-    this.refs.gamelist.focus();
+    // this.refs['join-input'].tabIndex = 0;
+    // this.refs['join-button'].tabIndex = 0;
+    // this.refs['create-public'].tabIndex = 0;
+    // this.refs['create-private'].tabIndex = 0;
+    // this.refs['list-public'].tabIndex = 0;
+    // this.refs['list-private'].tabIndex = 0;
+    // this.refs.gamelist.focus();
+    this.props.resetFocus();
   }
 
   render() {
     return (
-      <div ref="gamelist" tabIndex="0">
+      <div ref={(gl) => { this.gamelist = gl; }} tabIndex="0">
         <div className="row" aria-hidden={this.state.error ? 'true' : 'false'}>
           <div className="row game-option">
             <div className="col-sm-6 col-xs-12">
@@ -96,7 +98,7 @@ export default class GameList extends Component {
                 <div className="col-xs-8">
                   <form id="join-form">
                     <input
-                      ref="join-input" id="join" type="text" placeholder="Enter the game ID"
+                      id="join" type="text" placeholder="Enter the game ID"
                       onChange={(e) => {
                         e.preventDefault(); this.setSearchId(e.target.value);
                       }}
@@ -104,7 +106,7 @@ export default class GameList extends Component {
                   </form>
                 </div>
                 <div className="col-xs-4">
-                  <button ref="join-button" form="join-form" value="Submit" className="options" onClick={this.joinGame.bind(this)}> Join </button>
+                  <button form="join-form" value="Submit" className="options" onClick={this.joinGame.bind(this)}> Join </button>
                 </div>
               </div>
             </div>
@@ -112,8 +114,8 @@ export default class GameList extends Component {
               <h4>Create a game:</h4>
               <div className="row">
                 <div className="col-xs-12">
-                  <button ref="create-public" className="options" onClick={() => { Meteor.call('games.newGame'); }}> Public game</button>
-                  <button ref="create-private" className="options" onClick={() => { Meteor.call('games.newGame', true); }}> Private game</button>
+                  <button className="options" onClick={() => { Meteor.call('games.newGame'); }}> Public game</button>
+                  <button className="options" onClick={() => { Meteor.call('games.newGame', true); }}> Private game</button>
                 </div>
               </div>
             </div>
@@ -123,8 +125,8 @@ export default class GameList extends Component {
               <h4>Browse games:</h4>
               <div className="row">
                 <div className="col-xs-12">
-                  <button ref="list-public" className="options" onClick={(e) => { e.preventDefault(); this.seeJoinGames(); }}> Public games to join</button>
-                  <button ref="list-private" className="options" onClick={(e) => { e.preventDefault(); this.seeHistoricGames(); }}> Historic games</button>
+                  <button className="options" onClick={(e) => { e.preventDefault(); this.seeJoinGames(); }}> Public games to join</button>
+                  <button className="options" onClick={(e) => { e.preventDefault(); this.seeHistoricGames(); }}> Historic games</button>
                 </div>
               </div>
             </div>

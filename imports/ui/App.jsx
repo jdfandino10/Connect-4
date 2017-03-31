@@ -39,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <nav className="hideOnSignModal" aria-hidden={this.state.modal ? 'true' : 'false'}>
+        <nav aria-hidden={this.state.modal ? 'true' : 'false'}>
           <div className="row">
 
             <div className="col-sm-9 col-xs-7 logo">
@@ -49,12 +49,12 @@ class App extends Component {
                     <img className="logo-img" src="imgs/favicon.png" alt="" />
                   </div>
                 </div>
-                <div className="col-xs-9 col-sm-10">
+                <div className="col-xs-9 col-sm-10 hideOnSignModal">
                   <h1 id="logo-name" className="logo" >Connect-4</h1>
                 </div>
               </div>
             </div>
-            <div className="col-sm-3 col-xs-5" id="accounts-wrapper">
+            <div className="col-sm-3 col-xs-5">
               <AccountsUIWrapper />
             </div>
           </div>

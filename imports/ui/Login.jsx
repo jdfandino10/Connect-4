@@ -42,9 +42,9 @@ export default class Login extends Component {
                     <p>Connect-4 is a very simple <strong>board game</strong>.
                       On a 6x7 grid players must insert
                     chips alternately. The main goal is to get the
-                    <strong>largest number of 4 chips in a
+                    <strong> largest number of 4 chips in a
                   row</strong>, either horizontally, vertically or diagonally.
-                  <strong>Strategy</strong> is the key!</p>
+                  <strong> Strategy</strong> is the key!</p>
                   </div>
                 </div>
               </div>
