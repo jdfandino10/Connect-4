@@ -71,7 +71,7 @@ export default class Message extends Component {
       <div>
       <div className="row fixed-container">
         <div className="message-float col-xs-12" onClick={this.close.bind(this)}>
-          <div ref="title" className="message-container" tabIndex="0" onClick={this.stopPropagation} onKeyDown={this.blockF.bind(this)}>
+          <div ref="title" role="dialog" className="message-container" tabIndex="0" onClick={this.stopPropagation} onKeyDown={this.blockF.bind(this)}>
             <div className="row">
               <div className="col-xs-12">
                 <h2 className="text-center game-over">Game Over</h2>

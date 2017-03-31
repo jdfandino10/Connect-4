@@ -56,7 +56,7 @@ export default class GenericMessage extends Component {
 
       <div className="row fixed-container">
         <div className="message-float col-xs-12" onClick={this.props.showCancel?this.cancel.bind(this):this.accept.bind(this)}>
-          <div ref="title" className="message-container" tabIndex="0" onClick={this.stopEvent.bind(this)} onKeyDown={this.blockF.bind(this)}>
+          <div ref="title" role="dialog" className="message-container" tabIndex="0" onClick={this.stopEvent.bind(this)} onKeyDown={this.blockF.bind(this)}>
             <div className="row">
               <div className="col-xs-12">
                 <h2 className="text-center game-over">{this.props.title}</h2>

@@ -68,6 +68,7 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
     oldPass.focus();
   }
   if (signModalToggle.length !== 0) {
+  	signModalToggle.attr('aria-hidden', 'false');
     signModalToggle.click(() => { removeFocus(); });
   }
   if (modal.length !== 0) {
@@ -79,12 +80,18 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
   	}
     modal.attr('tabindex', '1');
     modal.attr('aria-label', 'sign up or login');
+    modal.attr('aria-hidden', 'false');
+    modal.attr('role', 'dialog');
     if ($('#overlay').length === 0) {
       $('<div id=\'overlay\'class=\'modal-overlay\'></div>').insertAfter(modal);
       $('#overlay').click(() => { close.click(); });
     }
     modal.keydown((e) => { trapTabKey(e, close, lastTabStop, close.click); });
-    console.log("key trap set");
+    if(signModalToggle.length !== 0) {
+    	signModalToggle.attr('aria-hidden', 'true');
+    }
+  } else {
+  	signModalToggle.focus();
   }
   if (close.length !== 0) {
     close.click(() => {
