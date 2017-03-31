@@ -14,11 +14,11 @@ export default class GenericMessage extends Component {
 
   componentDidMount() {
     this.refs.title.focus();
-    if (this.props.blockFocus) this.props.blockFocus();
+    this.props.blockFocus();
+    console.log(this.props.blockFocus);
   }
 
   blockF(e) {
-    console.log(e);
     let okButton = this.refs['ok-button'];
     let cancelButton = this.refs['cancel-button'];
     let firstTabStop = okButton;
@@ -42,7 +42,7 @@ export default class GenericMessage extends Component {
   }
 
   componentWillUnmount() {
-    if (this.props.resetFocus) this.props.resetFocus();
+    this.props.resetFocus();
   }
 
   stopEvent( e ) {

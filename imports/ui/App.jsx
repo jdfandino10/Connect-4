@@ -22,6 +22,7 @@ class App extends Component {
 	}
 
 	hideNavBar() {
+		console.log("hide nav bar");
 		this.setState({modal:true});
 	}
 
@@ -47,7 +48,7 @@ class App extends Component {
 								</div>			
 							</div>
 						</div>
-						<div className="col-sm-3 col-xs-5" id="accounts-wrapper">
+						<div className="col-sm-3 col-xs-5">
 							<AccountsUIWrapper />
 						</div>
 					</div>

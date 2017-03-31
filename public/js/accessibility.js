@@ -14,8 +14,11 @@ function trapTabKey(e, firstTabStop, lastTabStop, closeModal) {
 			}
 		}
 	}
-	if(e.keyCode === 27) {
+	if (e.keyCode === 27) {
 		closeModal();
+	}
+	if (e.keyCode === 13) {
+		restoreFocus();
 	}
 }
 
@@ -45,8 +48,8 @@ function restoreFocus() {
   hideable.attr('aria-hidden', 'false');
 }
 
+
 $('#accounts-wrapper').bind('DOMNodeInserted', () => {
-  // console.log('child is appended');
   const userIn = $('#login-username');
   let signModalToggle = $('#login-sign-in-link');
   const close = $('a.login-close-text');
@@ -78,7 +81,7 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
   	} else if (chPassBtn.length !== 0) {
   		lastTabStop = chPassBtn;
   	}
-    modal.attr('tabindex', '1');
+    modal.attr('tabindex', '0');
     modal.attr('aria-label', 'sign up or login');
     modal.attr('aria-hidden', 'false');
     modal.attr('role', 'dialog');
@@ -90,8 +93,10 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
     if(signModalToggle.length !== 0) {
     	signModalToggle.attr('aria-hidden', 'true');
     }
+    removeFocus();
   } else {
   	signModalToggle.focus();
+  	restoreFocus();
   }
   if (close.length !== 0) {
     close.click(() => {

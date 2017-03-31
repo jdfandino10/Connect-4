@@ -28,11 +28,11 @@ export default class Message extends Component {
 
   componentDidMount() {
     this.refs.title.focus();
-    if (this.props.blockFocus) this.props.blockFocus();
+    this.props.blockFocus();
   }
 
   componentWillUnmount() {
-    if (this.props.resetFocus) this.props.resetFocus();
+    this.props.resetFocus();
   }
 
   stopPropagation( e ) {
@@ -42,7 +42,6 @@ export default class Message extends Component {
   }
 
   blockF(e) {
-    console.log(e);
     let okButton = this.refs['ok-button'];
     let cancelButton = this.refs['cancel-button'];
     let firstTabStop = okButton;

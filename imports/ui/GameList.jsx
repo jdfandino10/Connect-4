@@ -52,22 +52,25 @@ export default class GameList extends Component {
 	}
 
 	blockFocus () {
-		this.refs['join-input'].tabIndex=-1;
-		this.refs['join-button'].tabIndex=-1;
-		this.refs['create-public'].tabIndex=-1;
-		this.refs['create-private'].tabIndex=-1;
-		this.refs['list-public'].tabIndex=-1;
-		this.refs['list-private'].tabIndex=-1;
+		//this.refs['join-input'].tabIndex=-1;
+		//this.refs['join-button'].tabIndex=-1;
+		//this.refs['create-public'].tabIndex=-1;
+		//this.refs['create-private'].tabIndex=-1;
+		//this.refs['list-public'].tabIndex=-1;
+		//this.refs['list-private'].tabIndex=-1;
+		console.log(this.props.blockFocus);
+		this.props.blockFocus();
 	}
 
 	resetFocus() {
-		this.refs['join-input'].tabIndex=0;
-		this.refs['join-button'].tabIndex=0;
-		this.refs['create-public'].tabIndex=0;
-		this.refs['create-private'].tabIndex=0;
-		this.refs['list-public'].tabIndex=0;
-		this.refs['list-private'].tabIndex=0;
+		//this.refs['join-input'].tabIndex=0;
+		//this.refs['join-button'].tabIndex=0;
+		//this.refs['create-public'].tabIndex=0;
+		//this.refs['create-private'].tabIndex=0;
+		//this.refs['list-public'].tabIndex=0;
+		//this.refs['list-private'].tabIndex=0;
 		this.refs.gamelist.focus();
+		this.props.resetFocus();
 	}
 
 	componentDidMount() {

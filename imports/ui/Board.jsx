@@ -82,6 +82,8 @@ export default class Board extends Component {
 	}
 
 	blockFocus() {
+		console.log('block focus');
+		console.log(this.props.hideNavBar);
 		this.props.hideNavBar();
 		this.refs.board.tabIndex=-1;
 	}
@@ -106,7 +108,7 @@ export default class Board extends Component {
 									 </div>):
 										<div className="hideOnSignModal" aria-hidden={this.state.modal || this.state.giveUp?'true':'false'}>
 									 		<GameList availableGames={this.availableGames()} historicGames={this.historicGames()}
-									 		modalIsOn={this.state.modal}/>
+									 		modalIsOn={this.state.modal} blockFocus={this.blockFocus.bind(this)} resetFocus={this.resetFocus.bind(this)} />
 									 	</div>
 			}
 
