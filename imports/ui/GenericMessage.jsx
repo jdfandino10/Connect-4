@@ -1,51 +1,60 @@
-import React, {Component} from 'react';
+/* global Meteor*/
+/* global document*/
+/* eslint "react/prop-types": [0, { ignore: [historicGames] }] */
+/* eslint "class-methods-use-this":
+[2, { "exceptMethods": ["stopEvent", "getPointsDownDiag", "getPointsUpDiag",
+                        "getPointsRight",
+                       "createRow"] }]
+*/
+import React, { Component } from 'react';
 
 export default class GenericMessage extends Component {
-
-  accept(e) {
-    e.preventDefault();
-    this.props.remove();
-  };
-
-  cancel(e) {
-    e.preventDefault();
-    this.props.cancel();
-  }
 
   componentDidMount() {
     this.refs.title.focus();
     if (this.props.blockFocus) this.props.blockFocus();
   }
 
-  blockF(e) {
-    console.log(e);
-    let okButton = this.refs['ok-button'];
-    let cancelButton = this.refs['cancel-button'];
-    let firstTabStop = okButton;
-    let lastTabStop = cancelButton || okButton;
-    if (e.keyCode === 9) {
-      if (e.shiftKey) {
-        if(document.activeElement === firstTabStop) {
-          e.preventDefault();
-          lastTabStop.focus();
-        }
-      } else {
-        if(document.activeElement === lastTabStop) {
-          e.preventDefault();
-          firstTabStop.focus();
-        }
-      }
-    }
-    if(e.keyCode === 27) {
-      closeModal();
-    }
-  }
-
   componentWillUnmount() {
     if (this.props.resetFocus) this.props.resetFocus();
   }
 
-  stopEvent( e ) {
+  accept(e) {
+    e.preventDefault();
+    this.props.remove();
+  }
+
+  cancel(e) {
+    e.preventDefault();
+    this.props.cancel();
+  }
+
+  blockF(e) {
+    let okButton = null;
+    okButton = this.refs['ok-button'];
+    let cancelButton = null;
+    cancelButton = this.refs['cancel-button'];
+    let firstTabStop = null;
+    firstTabStop = okButton;
+    let lastTabStop = null;
+    lastTabStop = cancelButton || okButton;
+    if (e.keyCode === 9) {
+      if (e.shiftKey) {
+        if (document.activeElement === firstTabStop) {
+          e.preventDefault();
+          lastTabStop.focus();
+        }
+      } else if (document.activeElement === lastTabStop) {
+        e.preventDefault();
+        firstTabStop.focus();
+      }
+    }
+    if (e.keyCode === 27) {
+      closeModal();
+    }
+  }
+
+  stopEvent(e) {
     if (!e) var e = window.event;
     e.cancelBubble = true;
     if (e.stopPropagation) e.stopPropagation();

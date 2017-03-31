@@ -1,13 +1,19 @@
-import React, {Component} from 'react';
+/* global Meteor*/
+/* eslint "react/jsx-no-bind": [2, {
+  "ignoreRefs": true,
+  "allowArrowFunctions": true,
+  "allowBind": true
+}]*/
+import React, { Component } from 'react';
 
 export default class Message extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      winner: this.props.game.winner,
-      p1: {username: this.props.game.p1.username, score: this.props.game.p1.score},
-      p2: {username: this.props.game.p2.username, score: this.props.game.p2.score},
+      winner: this.props.game.pWinner,
+      p1: { username: this.props.game.p1.username, score: this.props.game.p1.score },
+      p2: { username: this.props.game.p2.username, score: this.props.game.p2.score },
     };
   }
 

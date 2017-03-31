@@ -1,22 +1,21 @@
 /* global $ */
+/* global document*/
 
 function trapTabKey(e, firstTabStop, lastTabStop, closeModal) {
-	if (e.keyCode === 9) {
-		if (e.shiftKey) {
-			if(document.activeElement === firstTabStop[0]) {
-				e.preventDefault();
-				lastTabStop.focus();
-			}
-		} else {
-			if(document.activeElement === lastTabStop[0]) {
-				e.preventDefault();
-				firstTabStop.focus();
-			}
-		}
-	}
-	if(e.keyCode === 27) {
-		closeModal();
-	}
+  if (e.keyCode === 9) {
+    if (e.shiftKey) {
+      if (document.activeElement === firstTabStop[0]) {
+        e.preventDefault();
+        lastTabStop.focus();
+      }
+    } else if (document.activeElement === lastTabStop[0]) {
+      e.preventDefault();
+      firstTabStop.focus();
+    }
+  }
+  if (e.keyCode === 27) {
+    closeModal();
+  }
 }
 
 function addButtonBehaviour(component) {
@@ -71,12 +70,12 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
     signModalToggle.click(() => { removeFocus(); });
   }
   if (modal.length !== 0) {
-  	let lastTabStop = change;
-  	if (signOut.length !== 0){
-  		lastTabStop = signOut;
-  	} else if (chPassBtn.length !== 0) {
-  		lastTabStop = chPassBtn;
-  	}
+    let lastTabStop = change;
+    if (signOut.length !== 0) {
+      lastTabStop = signOut;
+    } else if (chPassBtn.length !== 0) {
+      lastTabStop = chPassBtn;
+    }
     modal.attr('tabindex', '1');
     modal.attr('aria-label', 'sign up or login');
     if ($('#overlay').length === 0) {
@@ -84,7 +83,6 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
       $('#overlay').click(() => { close.click(); });
     }
     modal.keydown((e) => { trapTabKey(e, close, lastTabStop, close.click); });
-    console.log("key trap set");
   }
   if (close.length !== 0) {
     close.click(() => {
