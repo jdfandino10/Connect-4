@@ -170,12 +170,12 @@ export default class Game extends Component {
 					<div className="col-xs-6 p1-footer">
 						<h2>Player 1</h2>
 						<h3>{ this.props.game.p1.username }</h3>
-						<h3 role="status" aria-label="player 1 score" aria-live="polite">{ this.state.p1score }</h3>
+						<h3 role="status" aria-live="polite">Score: { this.state.p1score }</h3>
 					</div>
 					<div className="col-xs-6 p2-footer">
 						<h2>Player 2</h2>
 						<h3>{ this.props.game.p2.username }</h3>
-						<h3 role="status" aria-label="player 2 score" aria-live="polite">{ this.state.p2score }</h3>
+						<h3 role="status" aria-live="polite">Score: { this.state.p2score }</h3>
 					</div>
 				</div>
 			</div>
