@@ -41,12 +41,37 @@ export default class Message extends Component {
     if (e.stopPropagation) e.stopPropagation();
   }
 
+  blockF(e) {
+    console.log(e);
+    let okButton = this.refs['ok-button'];
+    let cancelButton = this.refs['cancel-button'];
+    let firstTabStop = okButton;
+    let lastTabStop = cancelButton || okButton;
+    if (e.keyCode === 9) {
+      if (e.shiftKey) {
+        if(document.activeElement === firstTabStop) {
+          e.preventDefault();
+          lastTabStop.focus();
+        }
+      } else {
+        if(document.activeElement === lastTabStop) {
+          e.preventDefault();
+          firstTabStop.focus();
+        }
+      }
+    }
+    if(e.keyCode === 27) {
+      closeModal();
+    }
+  }
+
+
   render() {
     return (
       <div>
       <div className="row fixed-container">
         <div className="message-float col-xs-12" onClick={this.close.bind(this)}>
-          <div ref="title" className="message-container" tabIndex="0" onClick={this.stopPropagation}>
+          <div ref="title" className="message-container" tabIndex="0" onClick={this.stopPropagation} onKeyDown={this.blockF.bind(this)}>
             <div className="row">
               <div className="col-xs-12">
                 <h2 className="text-center game-over">Game Over</h2>
@@ -74,7 +99,7 @@ export default class Message extends Component {
              </div>
              <div className="row">
                <div className="col-xs-12 text-center">
-                 <button className="btn options" onClick={this.close.bind(this)}>Ok</button>
+                 <button ref="ok-button" className="btn options" onClick={this.close.bind(this)}>Ok</button>
                </div>
             </div>
           </div>

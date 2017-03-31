@@ -151,7 +151,7 @@ Meteor.methods({
     }
     const gameCol = game.cols[col];
     let i = gameCol.length - 1;
-    while (i >= 0 && gameCol[i] !== 0) i-=i;
+    while (i >= 0 && gameCol[i] !== 0) i-=1;
     if (game.cols[col][i] !== 0) throw new Meteor.Error('not-authorized');
     game.cols[col][i] = game.turn + 1;
     Games.update(gameId, { $set: { cols:game.cols, turn: (game.turn + 1) % 2 } });

@@ -17,11 +17,35 @@ export default class GenericMessage extends Component {
     if (this.props.blockFocus) this.props.blockFocus();
   }
 
+  blockF(e) {
+    console.log(e);
+    let okButton = this.refs['ok-button'];
+    let cancelButton = this.refs['cancel-button'];
+    let firstTabStop = okButton;
+    let lastTabStop = cancelButton || okButton;
+    if (e.keyCode === 9) {
+      if (e.shiftKey) {
+        if(document.activeElement === firstTabStop) {
+          e.preventDefault();
+          lastTabStop.focus();
+        }
+      } else {
+        if(document.activeElement === lastTabStop) {
+          e.preventDefault();
+          firstTabStop.focus();
+        }
+      }
+    }
+    if(e.keyCode === 27) {
+      closeModal();
+    }
+  }
+
   componentWillUnmount() {
     if (this.props.resetFocus) this.props.resetFocus();
   }
 
-  stopPropagation( e ) {
+  stopEvent( e ) {
     if (!e) var e = window.event;
     e.cancelBubble = true;
     if (e.stopPropagation) e.stopPropagation();
@@ -32,7 +56,7 @@ export default class GenericMessage extends Component {
 
       <div className="row fixed-container">
         <div className="message-float col-xs-12" onClick={this.props.showCancel?this.cancel.bind(this):this.accept.bind(this)}>
-          <div ref="title" className="message-container" tabIndex="0" onClick={this.stopPropagation.bind(this)}>
+          <div ref="title" className="message-container" tabIndex="0" onClick={this.stopEvent.bind(this)} onKeyDown={this.blockF.bind(this)}>
             <div className="row">
               <div className="col-xs-12">
                 <h2 className="text-center game-over">{this.props.title}</h2>
@@ -45,8 +69,8 @@ export default class GenericMessage extends Component {
              </div>
              <div className="row">
                <div className="col-xs-12 text-center">
-                 <button className="btn options" onClick={this.accept.bind(this)}>Ok</button>
-                 {this.props.showCancel?<button className="btn options" onClick={this.cancel.bind(this)}>Cancel</button>:''}
+                 <button ref="ok-button" className="btn options" onClick={this.accept.bind(this)}>Ok</button>
+                 {this.props.showCancel?<button ref="cancel-button" className="btn options" onClick={this.cancel.bind(this)}>Cancel</button>:''}
                </div>
             </div>
           </div>

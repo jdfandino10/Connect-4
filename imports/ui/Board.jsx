@@ -32,7 +32,7 @@ export default class Board extends Component {
 	componentWillReceiveProps(newProps) {
 		if(newProps.activeGame){
 			if (newProps.activeGame.length>0) {
-				if (newProps.activeGame[0].state == 'playing'){
+				if (newProps.activeGame[0].state === 'playing'){
 					if(typeof newProps.activeGame[0].p1.score == 'undefined'){
 						let notFinished = newProps.activeGame[0].cols.some(function(row){
 							return row[0] === 0;
