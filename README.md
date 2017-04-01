@@ -1,6 +1,6 @@
 # Connect-4
 An online multiplayer connect 4 game using Meteor
-[The Demo Game](https://connect-4-tgnsipfgan.now.sh/)
+[The Demo Game](https://connect-04.herokuapp.com/)
 
 ## Play now!
 Create or join public or private games and play online with your friends. Just login or create an account to get started.
