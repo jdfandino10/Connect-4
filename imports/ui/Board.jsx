@@ -8,6 +8,7 @@
   "allowBind": true
 }]*/
 /* eslint "react/prop-types": [0, { ignore: [historicGames] }] */
+/* eslint arrow-body-style: [0]*/
 import React, { Component } from 'react';
 import GameList from './GameList.jsx';
 import Game from './Game.jsx';

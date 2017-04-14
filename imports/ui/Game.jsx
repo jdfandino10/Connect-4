@@ -15,6 +15,7 @@
                         "getPointsRight",
                        "createRow"] }]
 */
+/* eslint arrow-body-style: [0]*/
 import React, { Component } from 'react';
 
 export default class Game extends Component {
@@ -30,7 +31,7 @@ export default class Game extends Component {
 
 
   componentDidMount() {
-    this.refs.game.focus();
+    this.game.focus();
   }
 
   componentWillReceiveProps(newProps) {
@@ -188,7 +189,7 @@ export default class Game extends Component {
   }
 
   copyToClipboard() {
-    this.refs.game_id.select();
+    this.game_id.select();
     document.execCommand('copy');
   }
 
@@ -208,7 +209,7 @@ export default class Game extends Component {
             <h4>Waiting for player 2...</h4>
             <p>Share the game id with your friends!</p>
             <div className="row">
-              <strong>Game ID: </strong><textarea ref="game_id" className="game-id text-center" rows="1" value={this.props.game._id} readOnly />
+              <strong>Game ID: </strong><textarea ref={(gi) => { this.game_id = gi; }} className="game-id text-center" rows="1" value={this.props.game._id} readOnly />
               <button className="options clip" title="Copy to clipboard" onClick={this.copyToClipboard.bind(this)} aria-label="Copy to clipboard">
                 <span className="glyphicon glyphicon-paperclip" aria-hidden="true" />
               </button>
@@ -223,7 +224,7 @@ export default class Game extends Component {
 
   render() {
     return (
-      <div ref="game" tabIndex="0">
+      <div ref={(g) => { this.game = g; }} tabIndex="0">
         { this.props.game.p2._id ? this.getGameState() : this.waiting() }
         { this.props.game.p2._id ? this.getGameFooter() : '' }
       </div>
