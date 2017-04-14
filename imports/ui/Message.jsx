@@ -55,12 +55,10 @@ export default class Message extends Component {
   blockF(e) {
     let okButton = null;
     okButton = this.ok_button;
-    let cancelButton = null;
-    cancelButton = this.cancel_button;
     let firstTabStop = null;
     firstTabStop = okButton;
     let lastTabStop = null;
-    lastTabStop = cancelButton || okButton;
+    lastTabStop = okButton;
     if (e.keyCode === 9) {
       if (e.shiftKey) {
         if (document.activeElement === firstTabStop) {
@@ -73,7 +71,7 @@ export default class Message extends Component {
       }
     }
     if (e.keyCode === 27) {
-      // closeModal();
+      okButton.click();
     }
   }
 

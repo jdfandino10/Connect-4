@@ -21,7 +21,7 @@ function trapTabKey(e, firstTabStop, lastTabStop, closeModal) {
     }
   }
   if (e.keyCode === 27) {
-    closeModal();
+    closeModal.click();
   }
   if (e.keyCode === 13) {
     restoreFocus();
@@ -88,7 +88,7 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
       $('<div id=\'overlay\'class=\'modal-overlay\'></div>').insertAfter(modal);
       $('#overlay').click(() => { close.click(); });
     }
-    modal.keydown((e) => { trapTabKey(e, close, lastTabStop, close.click); });
+    modal.keydown((e) => { trapTabKey(e, close, lastTabStop, close); });
     if (signModalToggle.length !== 0) {
       signModalToggle.attr('aria-hidden', 'true');
     }

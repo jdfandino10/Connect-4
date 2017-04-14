@@ -61,6 +61,7 @@ export default class GenericMessage extends Component {
     }
     if (e.keyCode === 27) {
       // closeModal();
+      cancelButton.click();
     }
   }
 
