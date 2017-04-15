@@ -1,25 +1,31 @@
 /* global $ */
+/* global document*/
+
+function restoreFocus() {
+  const intr = $('.intro-page');
+  const hideable = $('.hideOnSignModal');
+  if (intr.length === 0) intr.attr('aria-hidden', 'false');
+  hideable.attr('aria-hidden', 'false');
+}
 
 function trapTabKey(e, firstTabStop, lastTabStop, closeModal) {
-	if (e.keyCode === 9) {
-		if (e.shiftKey) {
-			if(document.activeElement === firstTabStop[0]) {
-				e.preventDefault();
-				lastTabStop.focus();
-			}
-		} else {
-			if(document.activeElement === lastTabStop[0]) {
-				e.preventDefault();
-				firstTabStop.focus();
-			}
-		}
-	}
-	if (e.keyCode === 27) {
-		closeModal();
-	}
-	if (e.keyCode === 13) {
-		restoreFocus();
-	}
+  if (e.keyCode === 9) {
+    if (e.shiftKey) {
+      if (document.activeElement === firstTabStop[0]) {
+        e.preventDefault();
+        lastTabStop.focus();
+      }
+    } else if (document.activeElement === lastTabStop[0]) {
+      e.preventDefault();
+      firstTabStop.focus();
+    }
+  }
+  if (e.keyCode === 27) {
+    closeModal();
+  }
+  if (e.keyCode === 13) {
+    restoreFocus();
+  }
 }
 
 function addButtonBehaviour(component) {
@@ -40,14 +46,6 @@ function removeFocus() {
   hideable.attr('aria-hidden', 'true');
   // Agregar el focus trap
 }
-
-function restoreFocus() {
-  const intr = $('.intro-page');
-  const hideable = $('.hideOnSignModal');
-  if (intr.length === 0) intr.attr('aria-hidden', 'false');
-  hideable.attr('aria-hidden', 'false');
-}
-
 
 $('#accounts-wrapper').bind('DOMNodeInserted', () => {
   const userIn = $('#login-username');
@@ -71,16 +69,16 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
     oldPass.focus();
   }
   if (signModalToggle.length !== 0) {
-  	signModalToggle.attr('aria-hidden', 'false');
+    signModalToggle.attr('aria-hidden', 'false');
     signModalToggle.click(() => { removeFocus(); });
   }
   if (modal.length !== 0) {
-  	let lastTabStop = change;
-  	if (signOut.length !== 0){
-  		lastTabStop = signOut;
-  	} else if (chPassBtn.length !== 0) {
-  		lastTabStop = chPassBtn;
-  	}
+    let lastTabStop = change;
+    if (signOut.length !== 0) {
+      lastTabStop = signOut;
+    } else if (chPassBtn.length !== 0) {
+      lastTabStop = chPassBtn;
+    }
     modal.attr('tabindex', '0');
     modal.attr('aria-label', 'sign up or login');
     modal.attr('aria-hidden', 'false');
@@ -90,13 +88,13 @@ $('#accounts-wrapper').bind('DOMNodeInserted', () => {
       $('#overlay').click(() => { close.click(); });
     }
     modal.keydown((e) => { trapTabKey(e, close, lastTabStop, close.click); });
-    if(signModalToggle.length !== 0) {
-    	signModalToggle.attr('aria-hidden', 'true');
+    if (signModalToggle.length !== 0) {
+      signModalToggle.attr('aria-hidden', 'true');
     }
     removeFocus();
   } else {
-  	signModalToggle.focus();
-  	restoreFocus();
+    signModalToggle.focus();
+    restoreFocus();
   }
   if (close.length !== 0) {
     close.click(() => {
