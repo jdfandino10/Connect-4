@@ -1,5 +1,6 @@
 /* global Meteor*/
 /* eslint "react/prop-types": [0, { ignore: [historicGames] }] */
+/* eslint "no-nested-ternary": [0] */
 import React, { Component } from 'react';
 
 export default class GameThumbnailHistoric extends Component {

@@ -34,6 +34,7 @@ game: {
   p, // boolean que indica si la sesion es privada (solo se puede unir con el id
           del juego) true si privada, false de lo contrario
   giveUp, // boolean que indica si el ganador es por rendicion del contrincante
+  chat, [] // Arreglo de strings con los mensajes de los jugadores
 }
 */
 
@@ -162,5 +163,15 @@ Meteor.methods({
     game.cols[col][i] = game.turn + 1;
     Games.update(gameId, { $set: { cols: game.cols, turn: (game.turn + 1) % 2 } });
   },
+  'games.chat': function chat(gameId, message) {
+    check(gameId, String);
+    check(message, String);
 
+    const game = Games.findOne(gameId);
+    if (game.chat) game.chat.push(message);
+    else {
+      game.chat = [message];
+    }
+    Games.update(gameId, { $set: { chat: game.chat } });
+  },
 });

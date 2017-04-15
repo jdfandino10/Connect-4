@@ -16,6 +16,7 @@
   "allowBind": true
 }]*/
 /* eslint "react/prop-types": [0, { ignore: [historicGames] }] */
+/* eslint "jsx-a11y/no-static-element-interactions": [0] */
 import React, { Component } from 'react';
 
 export default class GenericMessage extends Component {

@@ -239,7 +239,7 @@ nav {
     margin-top: 20px;
     border: none;
   }
-  
+
   .logo-img-container {
     margin-left: 0;
     padding-left: 0;
@@ -249,7 +249,7 @@ nav {
     margin-right: 0;
     padding-right: 0;
   }
-  
+
   .custom-right {
     float: left !important;
   }
@@ -378,7 +378,7 @@ table {
 
 .p1-footer h2, .p1-footer h3 {
   color: white;
-} 
+}
 
 .p2-footer {
   background-color: var(--yellow-main);
@@ -450,4 +450,9 @@ label[for=join] {
 
 div:focus {
   outline: none;
+}
+
+.chat_scroll {
+  overflow-y: auto;
+  height: 240px;
 }

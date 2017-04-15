@@ -9,6 +9,8 @@
 /* eslint prefer-const: "off"*/
 /* eslint "class-methods-use-this":
 [2, { "exceptMethods": ["stopPropagation"] }] */
+/* eslint "jsx-a11y/no-static-element-interactions": [0] */
+/* eslint "no-nested-ternary": [0] */
 import React, { Component } from 'react';
 
 export default class Message extends Component {

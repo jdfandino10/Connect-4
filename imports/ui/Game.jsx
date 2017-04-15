@@ -17,6 +17,7 @@
 */
 /* eslint arrow-body-style: [0]*/
 import React, { Component } from 'react';
+import Chat from './Chat.jsx';
 
 export default class Game extends Component {
 
@@ -97,13 +98,13 @@ export default class Game extends Component {
     return good ? 1 : 0;
   }
 
+  // Get matrix of chips and chat
   getGameState() {
     let matrix = this.props.game.cols;
     let col1 = matrix[0];
     return (
       <div className="row">
-        <div className="col-sm-2 hidden-xs" />
-        <div className="col-sm-8 col-xs-12">
+        <div className="col-sm-8 col-xs-8">
           <table>
             <thead>
               <tr>
@@ -133,7 +134,9 @@ export default class Game extends Component {
             </tbody>
           </table>
         </div>
-        <div className="col-sm-2 hidden-xs" />
+        <div className="col-sm-4 col-xs-4">
+          <Chat gameChat={this.props.game} />
+        </div>
       </div>
     );
   }
