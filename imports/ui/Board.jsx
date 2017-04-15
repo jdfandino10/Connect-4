@@ -8,6 +8,7 @@
   "allowBind": true
 }]*/
 /* eslint "react/prop-types": [0, { ignore: [historicGames] }] */
+/* eslint arrow-body-style: [0]*/
 import React, { Component } from 'react';
 import GameList from './GameList.jsx';
 import Game from './Game.jsx';
@@ -70,10 +71,10 @@ export default class Board extends Component {
   }
 
   endGame() {
+    this.setState({ modal: false });
     if (this.props.activeGame[0]) {
       Meteor.call('games.end', this.props.activeGame[0]._id);
     }
-    this.setState({ modal: false });
   }
 
   showGiveUp() {
@@ -94,13 +95,15 @@ export default class Board extends Component {
 
   blockFocus() {
     this.props.hideNavBar();
-    this.board.tabIndex = -1;
+    if (this.board) this.board.tabIndex = -1;
   }
 
   resetFocus() {
     this.props.showNavBar();
-    this.board.tabIndex = 0;
-    this.board.focus();
+    if (this.board) {
+      this.board.tabIndex = 0;
+      this.board.focus();
+    }
   }
 
 

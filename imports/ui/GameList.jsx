@@ -6,6 +6,8 @@
   "allowBind": true
 }]*/
 /* eslint "react/prop-types": [0, { ignore: [historicGames] }] */
+/* eslint arrow-body-style: [0]*/
+/* eslint "no-nested-ternary": [0] */
 import React, { Component } from 'react';
 import GameThumbnail from './GameThumbnail.jsx';
 import GameThumbnailHistoric from './GameThumbnailHistoric.jsx';
