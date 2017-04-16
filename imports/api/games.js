@@ -93,7 +93,7 @@ Meteor.methods({
       }
       cols[i] = c;
     }
-    const p1 = { _id: this.userId, username: Meteor.user().username };
+    const p1 = { _id: this.userId, username: this.username };
     const p2 = { _id: undefined, username: undefined };
     const turn = 0;
     const state = 'waiting';
@@ -121,14 +121,14 @@ Meteor.methods({
     let pWinner = 'tie';
     if (scoreP1 > scoreP2) pWinner = game.p1.username;
     else if (scoreP2 > scoreP1) pWinner = game.p2.username;
-    Games.update(gameId, { $set: { p1: game.p1, p2: game.p2, pWinner } });
+    Games.update(gameId, { $set: { p1: game.p1, p2: game.p2, winner: pWinner } });
   },
   'games.giveUp': function giveUp(gameId) {
     check(gameId, String);
 
     const game = Games.findOne(gameId);
     let givesUp = true;
-    const winner = Meteor.user().username === game.p1.username ?
+    const winner = this.username === game.p1.username ?
                         game.p2.username : game.p1.username;
     Games.update(gameId, { $set: { state: 'ended', givesUp, winner } });
   },
@@ -144,7 +144,7 @@ Meteor.methods({
     if (!game) throw new Meteor.Error('Can\'t join game', 'There is no game with such id');
     if (game.state === 'playing') throw new Meteor.Error('Can\'t join game', 'The game is already playing');
     if (game.state === 'ended') throw new Meteor.Error('Can\'t join game', 'Game is over');
-    const player = { _id: this.userId, username: Meteor.user().username };
+    const player = { _id: this.userId, username: this.username };
     Games.update(gameId, { $set: { p2: player, state: 'playing' } });
   },
   'games.move': function move(gameId, col) {
