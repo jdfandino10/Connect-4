@@ -120,6 +120,17 @@ if (Meteor.isServer) {
 				winner.apply(invocation, [gameId]);
 				assert.equal(Games.find({winner: { $eq: username } }).count(), 1);
 			});
+
+			it('can set tie', function () {
+				const move = Meteor.server.method_handlers['games.move'];
+				const winner = Meteor.server.method_handlers['games.winner'];
+				for(var i=0; i<4; i++) {
+					move.apply(invocation, [gameId, 0]);
+					move.apply(invocation2, [gameId,1]);
+				}
+				winner.apply(invocation, [gameId]);
+				assert.equal(Games.find({winner: { $eq: 'tie' } }).count(), 1);
+			});
 			
 			describe('chat', function() {
 				it('can send message', function(){
@@ -130,6 +141,8 @@ if (Meteor.isServer) {
 					chat.apply(invocation, [gameId, msgs[2]]);
 					const savedChat = Games.findOne(gameId).chat;
 					for(var i = 0; i<msgs.length; i++) {
+						console.log('esperado: '+msgs[i]);
+						console.log('db: '+savedChat[i]);
 						assert.equal(msgs[i], savedChat[i]);
 					}
 				});
