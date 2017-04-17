@@ -141,8 +141,6 @@ if (Meteor.isServer) {
           chat.apply(invocation, [gameId, msgs[2]]);
           const savedChat = Games.findOne(gameId).chat;
           for(var i = 0; i<msgs.length; i++) {
-            console.log('esperado: '+msgs[i]);
-            console.log('db: '+savedChat[i]);
             assert.equal(msgs[i], savedChat[i]);
           }
         });
