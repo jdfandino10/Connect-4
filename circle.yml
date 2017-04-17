@@ -1,6 +1,17 @@
+# use the default node box and isntall meteor
+machine:
+  node:
+   version: 4.2.6
+  pre:
+   # download if meteor isn't already installed in the cache
+   - meteor || curl https://install.meteor.com | /bin/sh
+  post:
+   - meteor --version
+
 dependencies:
   post:
     - meteor npm install
+
 test:
   override:
     - meteor test --driver-package practicalmeteor:mocha
