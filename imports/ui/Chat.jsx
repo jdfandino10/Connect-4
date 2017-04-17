@@ -41,7 +41,7 @@ export default class Chat extends Component {
             <div className="row">
               <h3>Chat with {this.getAdversary()}!</h3>
             </div>
-            <div className="row chat_scroll" id="chat">
+            <div className="row chat_scroll" id="chat" aria-live="polite">
               {this.props.gameChat.chat
                 ? this.props.gameChat.chat.map((message, index) => {
                   const key = index;
