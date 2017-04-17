@@ -5,6 +5,7 @@ machine:
   pre:
    # download if meteor isn't already installed in the cache
    - meteor || curl https://install.meteor.com | /bin/sh
+   - NODE_ENV=development
   post:
    - meteor --version
 
