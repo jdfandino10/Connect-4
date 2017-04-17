@@ -1,0 +1,6 @@
+dependencies:
+  post:
+    - meteor npm install
+test:
+  override:
+    - meteor test --driver-package practicalmeteor:mocha
