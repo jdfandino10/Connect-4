@@ -11,6 +11,7 @@ It's simple and accessible!
 
 ## Development/Run
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8092d1ceaa4a4f819ee6d09379de30e3)](https://www.codacy.com/app/dalthviz/Connect-4?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jdfandino10/Connect-4&amp;utm_campaign=Badge_Grade)
+![Circleci](https://circleci.com/gh/jdfandino10/Connect-4/tree/master.svg?style=shield&circle-token=d729a3c0266d02cfb200b87a85e599c5d509d33a)
 
 In order to run this application you will need [Meteor](https://www.meteor.com/)
 
