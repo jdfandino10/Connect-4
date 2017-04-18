@@ -13,4 +13,4 @@ dependencies:
 
 test:
   override:
-    - meteor test --driver-package dispatch:mocha
+    - meteor test --once --driver-package dispatch:mocha
