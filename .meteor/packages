@@ -25,3 +25,4 @@ twbs:bootstrap
 practicalmeteor:mocha
 xolvio:cleaner
 dispatch:mocha
+dburles:factory

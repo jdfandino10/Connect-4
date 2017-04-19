@@ -127,7 +127,7 @@ export default class GameList extends Component {
               <div className="row">
                 <div className="col-xs-12">
                   <button className="options" onClick={(e) => { e.preventDefault(); this.seeJoinGames(); }}> Public games to join</button>
-                  <button className="options" onClick={(e) => { e.preventDefault(); this.seeHistoricGames(); }}> Historic games</button>
+                  <button id="historic-btn" className="options" onClick={(e) => { e.preventDefault(); this.seeHistoricGames(); }}> Historic games</button>
                 </div>
               </div>
             </div>
