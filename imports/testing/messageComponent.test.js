@@ -5,6 +5,7 @@
 /* global afterEach*/
 /* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }]*/
 /* eslint "react/jsx-filename-extension": [0] */
+/* eslint "import/no-unresolved": [0] */
 
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
