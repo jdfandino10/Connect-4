@@ -27,10 +27,12 @@ export default class Chat extends Component {
     return p1.username === Meteor.user().username ? p2.username : p1.username;
   }
 
-  chat() {
-    Meteor.call('games.chat', this.props.gameChat._id, this.state.message);
+  chat(e) {
+    e.preventDefault();
+    Meteor.call('games.chat', this.props.gameChat._id, Meteor.user().username + ': ' + this.state.message);
     const chat = document.getElementById('chat');
     chat.scrollTop = chat.scrollHeight;
+    this.setState({ message: '' });
   }
 
   render() {
@@ -49,11 +51,17 @@ export default class Chat extends Component {
                 }) : <h5>Start chatting!</h5> }
             </div>
             <div className="row">
-              <input
-                name="chat" placeholder="Here your message..."
-                onChange={(input) => { this.setState({ message: Meteor.user().username + ': ' + input.target.value }); }}
-              />
-              <button onClick={this.chat.bind(this)}>Chat</button>
+              <div className="col-xs-8">
+                <form id="id_chat_form">
+                  <input
+                    name="chat" type="text" placeholder="Here your message..." value={this.state.message}
+                    onChange={(input) => { this.setState({ message: input.target.value }); }}
+                  />
+                </form>
+              </div>
+              <div className="col-xs-4">
+                <button form="id_chat_form" value="Submit" className="options" onClick={this.chat.bind(this)}>Chat</button>
+              </div>
             </div>
 
           </div>
