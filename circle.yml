@@ -7,10 +7,11 @@ dependencies:
   override:
     - meteor || curl https://install.meteor.com | /bin/sh
     - npm install
+    - npm i selenium-webdriver@3.0.0-beta-2 chromedriver
     - meteor npm install
     - meteor --version
     - node --version
 
 test:
   override:
-    - meteor test --once --driver-package dispatch:mocha
+    - TEST_BROWSER_DRIVER=chrome meteor test --once --driver-package dispatch:mocha
