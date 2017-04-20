@@ -26,4 +26,12 @@ And run the application:
 
 `meteor run`
 
+Also if you want to run the test locally run:
+
+`meteor test --driver-package dispatch:mocha`
+
+Or for a view of the results in the browser:
+
+`meteor test --driver-package practicalmeteor:mocha`
+
 **Note:** The application in your local environment will work with a local database created by meteor.
